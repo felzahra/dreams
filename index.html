@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screens Off, Dreams On! · Internet Safety Adventure</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #FF6B6B;
+  --secondary: #4ECDC4;
+  --accent: #FFE66D;
+  --dark: #2A2A40;
+  --light: #F7F9FC;
+  --safe: #2ECC71;
+  --unsafe: #E74C3C;
+  --sidebar-bg: #2A2A40;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Fredoka', cursive;
+  background: linear-gradient(135deg, #E0F7FA 0%, #FFF9C4 100%);
+  color: var(--dark);
+  overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- SIDEBAR (LEFT PANEL) --- */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar-bg);
+  color: white;
+  padding: 25px 20px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 6px solid var(--secondary);
+  z-index: 100;
+}
+.creator-badge {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.creator-badge i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
+.creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
+.creator-badge p { font-size: 0.9rem; color: var(--secondary); font-weight: 600; margin-top: 5px; }
+
+.month-list h4 {
+  font-family: 'Bungee', cursive;
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.month-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
+.month-item:hover { background: rgba(255,255,255,0.1); }
+.month-item.active { background: var(--primary); border-color: var(--accent); }
+.month-item i { font-size: 1.2rem; }
+.month-item span { font-weight: 600; font-size: 0.95rem; }
+.month-item.disabled { opacity: 0.4; cursor: not-allowed; }
+
+.upload-area {
+  margin-top: 30px;
+  background: rgba(78, 205, 196, 0.1);
+  border: 2px dashed var(--secondary);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+.upload-area label {
+  display: block;
+  color: var(--secondary);
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.upload-area input[type="file"] { display: none; }
+.upload-btn {
+  background: var(--secondary);
+  color: var(--dark);
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.upload-btn:hover { background: var(--accent); }
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  padding: 0 0 40px 0;
+  width: calc(100% - 280px);
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 10px solid var(--secondary);
+  position: relative;
+}
+header h1 {
+  font-family: 'Bungee', cursive;
+  font-size: 3rem;
+  text-shadow: 4px 4px 0px var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+header p { font-size: 1.4rem; font-weight: 600; color: var(--accent); }
+header .badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: var(--dark);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  transform: rotate(10deg);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+main {
+  max-width: 1000px;
+  margin: -30px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Magazine Material Viewer */
+.material-viewer {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 4px solid var(--dark);
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.material-viewer h3 { color: var(--primary); margin-bottom: 10px; }
+.material-placeholder {
+  color: #888;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+.material-viewer img, .material-viewer iframe {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 3px solid var(--light);
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* General Section Card */
+.section-card {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 4px solid var(--dark);
+  transition: transform 0.3s;
+}
+.section-card:hover { transform: translateY(-5px); }
+.section-title {
+  font-family: 'Bungee', cursive;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.section-title i { color: var(--secondary); }
+
+/* Safe/Unsafe Game */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.action-card {
+  background: var(--light);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  border: 3px solid transparent;
+  transition: 0.3s;
+}
+.action-card .icon { font-size: 3rem; margin-bottom: 10px; }
+.action-card .text { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
+.btn-group { display: flex; gap: 10px; justify-content: center; }
+.btn-game {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Fredoka', cursive;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-safe { background: var(--safe); color: white; }
+.btn-unsafe { background: var(--unsafe); color: white; }
+.btn-game:hover { transform: scale(1.1); }
+.action-card.correct { background: #E8F8F5; border-color: var(--safe); pointer-events: none; }
+.action-card.incorrect { background: #FDEDEE; border-color: var(--unsafe); pointer-events: none; }
+
+/* Comic Story */
+.comic-panel {
+  background: #FFF8E1;
+  border: 4px solid var(--dark);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+.comic-panel::before {
+  content: 'I believe in myself!';
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: var(--accent);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  border: 2px solid var(--dark);
+  transform: rotate(5deg);
+}
+.comic-text { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; }
+.fill-blank {
+  display: inline-block;
+  width: 150px;
+  padding: 2px 10px;
+  margin: 0 5px;
+  border: 3px dashed var(--primary);
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary);
+}
+.story-input { font-size: 1.1rem; padding: 10px; border: 3px solid var(--secondary); border-radius: 12px; width: 100%; margin-top: 15px; font-family: 'Fredoka', cursive;}
+
+/* Maze Adventure */
+.maze-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #E0F2F1;
+  padding: 20px;
+  border-radius: 16px;
+}
+.maze-instructions { font-size: 1.1rem; margin-bottom: 15px; text-align: center; }
+.maze-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 60px);
+  grid-template-rows: repeat(5, 60px);
+  gap: 4px;
+  background: var(--dark);
+  padding: 4px;
+  border-radius: 12px;
+  outline: none;
+}
+.maze-cell {
+  background: #E0F7FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.maze-cell.wall { background: var(--primary); }
+.maze-cell.start { background: var(--secondary); }
+.maze-cell.end { background: var(--accent); }
+.maze-player { animation: bounce 1s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+/* Drawing Canvas */
+.draw-container {
+  background: #F3E5F5;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+}
+.color-palette { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; }
+.color-dot {
+  width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+  border: 3px solid var(--dark); transition: 0.2s;
+}
+.color-dot:hover { transform: scale(1.2); }
+.color-dot.active { box-shadow: 0 0 0 4px white, 0 0 0 7px var(--dark); }
+#drawCanvas {
+  background: white;
+  border: 5px solid var(--dark);
+  border-radius: 12px;
+  cursor: crosshair;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  touch-action: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--dark);
+  color: white;
+  margin-top: 40px;
+}
+footer h3 { font-family: 'Bungee', cursive; color: var(--accent); margin-bottom: 10px; }
+footer p { color: var(--secondary); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  body { flex-direction: column; }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 6px solid var(--secondary);
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  header h1 { font-size: 2.2rem; }
+  header .badge { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- LEFT PANEL SIDEBAR -->
+<aside class="sidebar">
+  <div class="creator-badge">
+    <i class="fas fa-feather-pointed"></i>
+    <h3>Created by<br>Miss Mariam Alemam Alagery</h3>
+    <p>Screens Off, Dreams On!</p>
+  </div>
+
+  <div class="month-list">
+    <h4><i class="fas fa-calendar-days"></i> Monthly Material</h4>
+    
+    <div class="month-item active" onclick="selectMonth(this, 1)">
+      <i class="fas fa-star"></i>
+      <span>Month 1 - Issue 1</span>
+    </div>
+    <div class="month-item disabled" onclick="alert('Coming Soon!')">
+      <i class="fas fa-lock"></i>
+      <span>Month 2 - Issue 2</span>
+    </div>
+    <div class="month-item disabled" onclick="alert('Coming Soon!')">
+      <i class="fas fa-lock"></i>
+      <span>Month 3 - Issue 3</span>
+    </div>
+  </div>
+
+  <div class="upload-area">
+    <label for="magUpload"><i class="fas fa-cloud-arrow-up"></i> Upload This Month's Material</label>
+    <input type="file" id="magUpload" accept="image/*,application/pdf">
+    <div class="upload-btn" onclick="document.getElementById('magUpload').click()">Choose File</div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+  <header>
+    <div class="badge">Issue 1: Month 1</div>
+    <h1>Screens Off, Dreams On!</h1>
+    <p>Learn, Play, Focus, and Dream!</p>
+  </header>
+
+  <main>
+    <!-- Material Viewer (Upload Display) -->
+    <section class="section-card material-viewer">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
+      <div id="materialDisplay" class="material-placeholder">
+        <i class="fas fa-images" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px;"></i><br>
+        Upload your magazine pages using the panel on the left to view them here!
+      </div>
+    </section>
+
+    <!-- Safe/Unsafe Game -->
+    <section class="section-card">
+      <div class="section-title"><i class="fas fa-shield-alt"></i> Safe or Unsafe?</div>
+      <p style="margin-bottom: 20px; font-size: 1.1rem;">Click whether the action is SAFE or UNSAFE!</p>
+      <div class="game-grid">
+        
+        <div class="action-card" id="card1">
+          <div class="icon">??</div>
+          <div class="text">Sharing my password with my best friend</div>
+          <div class="btn-group">
+            <button class="btn-game btn-safe" onclick="checkAnswer('card1', false, true)">Safe</button>
+            <button class="btn-game btn-unsafe" onclick="checkAnswer('card1', true, true)">Unsafe</button>
+          </div>
+        </div>
+
+        <div class="action-card" id="card2">
+          <div class="icon">?</div>
+          <div class="text">Taking a break from the screen to go play outside</div>
+          <div class="btn-group">
+            <button class="btn-game btn-safe" onclick="checkAnswer('card2', false, false)">Safe</button>
+            <button class="btn-game btn-unsafe" onclick="checkAnswer('card2', true, false)">Unsafe</button>
+          </div>
+        </div>
+
+        <div class="action-card" id="card3">
+          <div class="icon">??</div>
+          <div class="text">Clicking a link from a stranger for free games</div>
+          <div class="btn-group">
+            <button class="btn-game btn-safe" onclick="checkAnswer('card3', false, true)">Safe</button>
+            <button class="btn-game btn-unsafe" onclick="checkAnswer('card3', true, true)">Unsafe</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Comic Story -->
+    <section class="section-card">
+      <div class="section-title"><i class="fas fa-book-open"></i> Comic Story Time</div>
+      <div class="comic-panel">
+        <p class="comic-text">
+          Meet Max and his robot friend, Byte! ??<br><br>
+          Max wanted to play his favorite online game, but a pop-up said: "Click here for a million free coins!"<br>
+          Max remembered what Byte taught him: <strong>Never click strange pop-ups!</strong><br><br>
+          Instead, Max went to read a book and let his mind <span class="fill-blank" id="blankWord">______</span>!
+        </p>
+        <input type="text" class="story-input" id="storyInput" placeholder="Type your word here to finish the story!" oninput="updateStory()">
+      </div>
+    </section>
+
+    <!-- Maze Adventure -->
+    <section class="section-card">
+      <div class="section-title"><i class="fas fa-route"></i> Maze Adventure</div>
+      <div class="maze-container">
+        <p class="maze-instructions">Use the Arrow Keys (?? ?? ?? ??) to guide Max to his book!</p>
+        <div class="maze-grid" id="mazeGrid" tabindex="0">
+          <!-- Grid generated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Draw & Create -->
+    <section class="section-card">
+      <div class="section-title"><i class="fas fa-paint-brush"></i> Color, Draw & Create!</div>
+      <div class="draw-container">
+        <div class="color-palette">
+          <div class="color-dot active" style="background: #FF6B6B;" onclick="changeColor('#FF6B6B', this)"></div>
+          <div class="color-dot" style="background: #4ECDC4;" onclick="changeColor('#4ECDC4', this)"></div>
+          <div class="color-dot" style="background: #FFE66D;" onclick="changeColor('#FFE66D', this)"></div>
+          <div class="color-dot" style="background: #2A2A40;" onclick="changeColor('#2A2A40', this)"></div>
+          <div class="color-dot" style="background: #2ECC71;" onclick="changeColor('#2ECC71', this)"></div>
+        </div>
+        <canvas id="drawCanvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>Screens Off, Dreams On!</h3>
+    <p>Created by Miss Mariam Alemam Alagery</p>
+    <p style="margin-top: 10px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">See you next week for more adventures! ??</p>
+  </footer>
+</div>
+
+<script>
+// --- File Upload Logic ---
+document.getElementById('magUpload').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    const display = document.getElementById('materialDisplay');
+    display.innerHTML = ''; // Clear placeholder
+    
+    reader.onload = function(event) {
+      if (file.type.startsWith('image/')) {
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        display.appendChild(img);
+      } else if (file.type === 'application/pdf') {
+        const iframe = document.createElement('iframe');
+        iframe.src = event.target.result;
+        iframe.style.width = '100%';
+        iframe.style.height = '500px';
+        display.appendChild(iframe);
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// --- Month Selection Logic ---
+function selectMonth(element, monthNum) {
+  if(element.classList.contains('disabled')) return;
+  document.querySelectorAll('.month-item').forEach(item => item.classList.remove('active'));
+  element.classList.add('active');
+}
+
+// --- Safe/Unsafe Game Logic (Corrected) ---
+// userClickedUnsafe = true if they clicked "Unsafe", false if "Safe"
+// actualIsUnsafe = true if the action is actually unsafe, false if safe
+function checkAnswer(cardId, userClickedUnsafe, actualIsUnsafe) {
+  const card = document.getElementById(cardId);
+  if (userClickedUnsafe === actualIsUnsafe) {
+    card.classList.add('correct');
+  } else {
+    card.classList.add('incorrect');
+  }
+}
+
+// --- Story Logic ---
+function updateStory() {
+  const inputVal = document.getElementById('storyInput').value || '______';
+  document.getElementById('blankWord').innerText = inputVal;
+}
+
+// --- Maze Logic ---
+const mazeLayout = [
+  ['start', 'path', 'path', 'wall', 'end'],
+  ['wall', 'wall', 'path', 'wall', 'path'],
+  ['path', 'path', 'path', 'path', 'path'],
+  ['path', 'wall', 'wall', 'wall', 'path'],
+  ['path', 'path', 'path', 'path', 'path']
+];
+
+let playerPos = { x: 0, y: 0 };
+const mazeGrid = document.getElementById('mazeGrid');
+
+function drawMaze() {
+  mazeGrid.innerHTML = '';
+  mazeLayout.forEach((row, y) => {
+    row.forEach((cell, x) => {
+      const div = document.createElement('div');
+      div.classList.add('maze-cell');
+      if (cell === 'wall') div.classList.add('wall');
+      if (cell === 'start') div.classList.add('start');
+      if (cell === 'end') div.classList.add('end');
+      
+      if (playerPos.x === x && playerPos.y === y) {
+        div.innerHTML = '<span class="maze-player">??</span>';
+      } else if (cell === 'end') {
+        div.innerHTML = '??';
+      }
+      mazeGrid.appendChild(div);
+    });
+  });
+}
+
+// Keydown listener with input check fix
+document.addEventListener('keydown', (e) => {
+  // Prevent maze movement if user is typing in the story input
+  if (document.activeElement.tagName === 'INPUT') return;
+
+  let moved = false;
+  if (e.key === 'ArrowUp' && playerPos.y > 0 && mazeLayout[playerPos.y-1][playerPos.x] !== 'wall') {
+    playerPos.y--; moved = true;
+  } else if (e.key === 'ArrowDown' && playerPos.y < 4 && mazeLayout[playerPos.y+1][playerPos.x] !== 'wall') {
+    playerPos.y++; moved = true;
+  } else if (e.key === 'ArrowLeft' && playerPos.x > 0 && mazeLayout[playerPos.y][playerPos.x-1] !== 'wall') {
+    playerPos.x--; moved = true;
+  } else if (e.key === 'ArrowRight' && playerPos.x < 4 && mazeLayout[playerPos.y][playerPos.x+1] !== 'wall') {
+    playerPos.x++; moved = true;
+  }
+
+  if (moved) {
+    e.preventDefault(); // prevent page scroll
+    drawMaze();
+    if (mazeLayout[playerPos.y][playerPos.x] === 'end') {
+      setTimeout(() => alert('Great job! You found the book! ??'), 100);
+    }
+  }
+});
+
+drawMaze();
+
+// --- Drawing Canvas Logic ---
+const canvas = document.getElementById('drawCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+let currentColor = '#FF6B6B';
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function changeColor(color, element) {
+  currentColor = color;
+  document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
+  element.classList.add('active');
+}
+
+canvas.addEventListener('mousedown', (e) => {
+  drawing = true;
+  ctx.beginPath();
+  ctx.moveTo(e.offsetX, e.offsetY);
+});
+canvas.addEventListener('mousemove', (e) => {
+  if (!drawing) return;
+  ctx.strokeStyle = currentColor;
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+});
+canvas.addEventListener('mouseup', () => drawing = false);
+canvas.addEventListener('mouseleave', () => drawing = false);
+
+// Touch support for mobile drawing
+canvas.addEventListener('touchstart', (e) => {
+  drawing = true;
+  ctx.beginPath();
+  const rect = canvas.getBoundingClientRect();
+  ctx.moveTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+});
+canvas.addEventListener('touchmove', (e) => {
+  if (!drawing) return;
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  ctx.strokeStyle = currentColor;
+  ctx.lineTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+  ctx.stroke();
+});
+canvas.addEventListener('touchend', () => drawing = false);
+</script>
+
+</body>
+</html>
