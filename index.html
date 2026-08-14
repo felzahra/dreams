@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Screens Off, Dreams On! · Internet Safety Adventure</title>
+<title>Screens Off, Dreams On! · 2026 Internet Safety Adventure</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bungee&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -55,6 +55,9 @@ body {
   margin-bottom: 15px;
   font-size: 1rem;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .month-item {
   display: flex;
@@ -67,12 +70,13 @@ body {
   cursor: pointer;
   transition: 0.3s;
   border: 2px solid transparent;
+  text-decoration: none;
+  color: white;
 }
 .month-item:hover { background: rgba(255,255,255,0.1); }
 .month-item.active { background: var(--primary); border-color: var(--accent); }
 .month-item i { font-size: 1.2rem; }
 .month-item span { font-weight: 600; font-size: 0.95rem; }
-.month-item.disabled { opacity: 0.4; cursor: not-allowed; }
 
 .upload-area {
   margin-top: 30px;
@@ -98,6 +102,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   transition: 0.2s;
+  display: inline-block;
 }
 .upload-btn:hover { background: var(--accent); }
 
@@ -155,24 +160,26 @@ main {
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   border: 4px solid var(--dark);
   text-align: center;
-  min-height: 300px;
+}
+.material-viewer h3 { color: var(--primary); margin-bottom: 15px; font-family: 'Bungee', cursive; }
+.material-images {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   align-items: center;
-  justify-content: center;
 }
-.material-viewer h3 { color: var(--primary); margin-bottom: 10px; }
-.material-placeholder {
-  color: #888;
-  font-size: 1.1rem;
-  margin-top: 10px;
-}
-.material-viewer img, .material-viewer iframe {
+.material-viewer img {
   max-width: 100%;
   border-radius: 12px;
-  border: 3px solid var(--light);
-  margin-top: 15px;
+  border: 4px solid var(--light);
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+#materialDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-top: 15px;
 }
 
 /* General Section Card */
@@ -356,28 +363,64 @@ footer p { color: var(--secondary); font-weight: 600; }
   <div class="creator-badge">
     <i class="fas fa-feather-pointed"></i>
     <h3>Created by<br>Miss Mariam Alemam Alagery</h3>
-    <p>Screens Off, Dreams On!</p>
+    <p>2026 Edition</p>
   </div>
 
   <div class="month-list">
-    <h4><i class="fas fa-calendar-days"></i> Monthly Material</h4>
+    <h4><i class="fas fa-calendar-days"></i> 2026 Magazines</h4>
     
-    <div class="month-item active" onclick="selectMonth(this, 1)">
+    <a href="1.html" class="month-item active">
       <i class="fas fa-star"></i>
       <span>Month 1 - Issue 1</span>
-    </div>
-    <div class="month-item disabled" onclick="alert('Coming Soon!')">
+    </a>
+    <a href="2.html" class="month-item">
       <i class="fas fa-lock"></i>
       <span>Month 2 - Issue 2</span>
-    </div>
-    <div class="month-item disabled" onclick="alert('Coming Soon!')">
+    </a>
+    <a href="3.html" class="month-item">
       <i class="fas fa-lock"></i>
       <span>Month 3 - Issue 3</span>
-    </div>
+    </a>
+    <a href="4.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 4 - Issue 4</span>
+    </a>
+    <a href="5.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 5 - Issue 5</span>
+    </a>
+    <a href="6.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 6 - Issue 6</span>
+    </a>
+    <a href="7.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 7 - Issue 7</span>
+    </a>
+    <a href="8.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 8 - Issue 8</span>
+    </a>
+    <a href="9.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 9 - Issue 9</span>
+    </a>
+    <a href="10.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 10 - Issue 10</span>
+    </a>
+    <a href="11.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 11 - Issue 11</span>
+    </a>
+    <a href="12.html" class="month-item">
+      <i class="fas fa-lock"></i>
+      <span>Month 12 - Issue 12</span>
+    </a>
   </div>
 
   <div class="upload-area">
-    <label for="magUpload"><i class="fas fa-cloud-arrow-up"></i> Upload This Month's Material</label>
+    <label for="magUpload"><i class="fas fa-cloud-arrow-up"></i> Want to add more?</label>
     <input type="file" id="magUpload" accept="image/*,application/pdf">
     <div class="upload-btn" onclick="document.getElementById('magUpload').click()">Choose File</div>
   </div>
@@ -386,18 +429,20 @@ footer p { color: var(--secondary); font-weight: 600; }
 <!-- MAIN CONTENT -->
 <div class="main-content">
   <header>
-    <div class="badge">Issue 1: Month 1</div>
+    <div class="badge">2026: Issue 1</div>
     <h1>Screens Off, Dreams On!</h1>
     <p>Learn, Play, Focus, and Dream!</p>
   </header>
 
   <main>
-    <!-- Material Viewer (Upload Display) -->
+    <!-- This Month's Magazine (With Hardcoded Images) -->
     <section class="section-card material-viewer">
       <div class="section-title" style="justify-content: center;"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
-      <div id="materialDisplay" class="material-placeholder">
-        <i class="fas fa-images" style="font-size: 3rem; color: var(--secondary); margin-bottom: 15px;"></i><br>
-        Upload your magazine pages using the panel on the left to view them here!
+      <div id="materialDisplay" class="material-images">
+        <!-- Image 1 -->
+        <img src="https://z-cdn-media.chatglm.cn/files/1d6e007d-3642-4a14-869d-513ca370e1a7.jpeg?auth_key=1886700963-f0017e9eee644ec4add425fd9d446da9-0-fb6c3421e5d1fe5b333bacd844239279" alt="Internet Safety Adventure Page 1">
+        <!-- Image 2 -->
+        <img src="https://z-cdn-media.chatglm.cn/files/eb8dad68-b3b8-42a3-a501-b5afc81b9dc5.jpeg?auth_key=1886700963-820606a36e324fc2959887b17ff643ad-0-c17cda3bf070dfb2f825902520c99ddc" alt="Internet Safety Adventure Page 2">
       </div>
     </section>
 
@@ -408,7 +453,7 @@ footer p { color: var(--secondary); font-weight: 600; }
       <div class="game-grid">
         
         <div class="action-card" id="card1">
-          <div class="icon">??</div>
+          <div class="icon">🤫</div>
           <div class="text">Sharing my password with my best friend</div>
           <div class="btn-group">
             <button class="btn-game btn-safe" onclick="checkAnswer('card1', false, true)">Safe</button>
@@ -417,7 +462,7 @@ footer p { color: var(--secondary); font-weight: 600; }
         </div>
 
         <div class="action-card" id="card2">
-          <div class="icon">?</div>
+          <div class="icon">⏰</div>
           <div class="text">Taking a break from the screen to go play outside</div>
           <div class="btn-group">
             <button class="btn-game btn-safe" onclick="checkAnswer('card2', false, false)">Safe</button>
@@ -426,7 +471,7 @@ footer p { color: var(--secondary); font-weight: 600; }
         </div>
 
         <div class="action-card" id="card3">
-          <div class="icon">??</div>
+          <div class="icon">👀</div>
           <div class="text">Clicking a link from a stranger for free games</div>
           <div class="btn-group">
             <button class="btn-game btn-safe" onclick="checkAnswer('card3', false, true)">Safe</button>
@@ -442,7 +487,7 @@ footer p { color: var(--secondary); font-weight: 600; }
       <div class="section-title"><i class="fas fa-book-open"></i> Comic Story Time</div>
       <div class="comic-panel">
         <p class="comic-text">
-          Meet Max and his robot friend, Byte! ??<br><br>
+          Meet Max and his robot friend, Byte! 🤖<br><br>
           Max wanted to play his favorite online game, but a pop-up said: "Click here for a million free coins!"<br>
           Max remembered what Byte taught him: <strong>Never click strange pop-ups!</strong><br><br>
           Instead, Max went to read a book and let his mind <span class="fill-blank" id="blankWord">______</span>!
@@ -455,7 +500,7 @@ footer p { color: var(--secondary); font-weight: 600; }
     <section class="section-card">
       <div class="section-title"><i class="fas fa-route"></i> Maze Adventure</div>
       <div class="maze-container">
-        <p class="maze-instructions">Use the Arrow Keys (?? ?? ?? ??) to guide Max to his book!</p>
+        <p class="maze-instructions">Use the Arrow Keys (⬆️ ⬇️ ⬅️ ➡️) to guide Max to his book!</p>
         <div class="maze-grid" id="mazeGrid" tabindex="0">
           <!-- Grid generated by JS -->
         </div>
@@ -481,18 +526,17 @@ footer p { color: var(--secondary); font-weight: 600; }
   <footer>
     <h3>Screens Off, Dreams On!</h3>
     <p>Created by Miss Mariam Alemam Alagery</p>
-    <p style="margin-top: 10px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">See you next week for more adventures! ??</p>
+    <p style="margin-top: 10px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">See you next week for more adventures! 🌟</p>
   </footer>
 </div>
 
 <script>
-// --- File Upload Logic ---
+// --- File Upload Logic (For future use if needed) ---
 document.getElementById('magUpload').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();
     const display = document.getElementById('materialDisplay');
-    display.innerHTML = ''; // Clear placeholder
     
     reader.onload = function(event) {
       if (file.type.startsWith('image/')) {
@@ -511,16 +555,7 @@ document.getElementById('magUpload').addEventListener('change', function(e) {
   }
 });
 
-// --- Month Selection Logic ---
-function selectMonth(element, monthNum) {
-  if(element.classList.contains('disabled')) return;
-  document.querySelectorAll('.month-item').forEach(item => item.classList.remove('active'));
-  element.classList.add('active');
-}
-
-// --- Safe/Unsafe Game Logic (Corrected) ---
-// userClickedUnsafe = true if they clicked "Unsafe", false if "Safe"
-// actualIsUnsafe = true if the action is actually unsafe, false if safe
+// --- Safe/Unsafe Game Logic ---
 function checkAnswer(cardId, userClickedUnsafe, actualIsUnsafe) {
   const card = document.getElementById(cardId);
   if (userClickedUnsafe === actualIsUnsafe) {
@@ -559,9 +594,9 @@ function drawMaze() {
       if (cell === 'end') div.classList.add('end');
       
       if (playerPos.x === x && playerPos.y === y) {
-        div.innerHTML = '<span class="maze-player">??</span>';
+        div.innerHTML = '<span class="maze-player">🧒</span>';
       } else if (cell === 'end') {
-        div.innerHTML = '??';
+        div.innerHTML = '📚';
       }
       mazeGrid.appendChild(div);
     });
@@ -570,8 +605,7 @@ function drawMaze() {
 
 // Keydown listener with input check fix
 document.addEventListener('keydown', (e) => {
-  // Prevent maze movement if user is typing in the story input
-  if (document.activeElement.tagName === 'INPUT') return;
+  if (document.activeElement.tagName === 'INPUT') return; // Prevent moving maze while typing
 
   let moved = false;
   if (e.key === 'ArrowUp' && playerPos.y > 0 && mazeLayout[playerPos.y-1][playerPos.x] !== 'wall') {
@@ -585,10 +619,10 @@ document.addEventListener('keydown', (e) => {
   }
 
   if (moved) {
-    e.preventDefault(); // prevent page scroll
+    e.preventDefault(); 
     drawMaze();
     if (mazeLayout[playerPos.y][playerPos.x] === 'end') {
-      setTimeout(() => alert('Great job! You found the book! ??'), 100);
+      setTimeout(() => alert('Great job! You found the book! 🎉'), 100);
     }
   }
 });
@@ -630,7 +664,7 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseup', () => drawing = false);
 canvas.addEventListener('mouseleave', () => drawing = false);
 
-// Touch support for mobile drawing
+// Touch support for mobile
 canvas.addEventListener('touchstart', (e) => {
   drawing = true;
   ctx.beginPath();
