@@ -47,9 +47,9 @@ body {
 }
 .creator-badge i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
 .creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
-.creator-badge p { font-size: 0.9rem; color: var(--secondary); font-weight: 600; margin-top: 5px; }
 
-.month-list h4 {
+.sidebar-section { margin-bottom: 30px; }
+.sidebar-section h4 {
   font-family: 'Bungee', cursive;
   color: var(--accent);
   margin-bottom: 15px;
@@ -59,7 +59,7 @@ body {
   align-items: center;
   gap: 10px;
 }
-.month-item {
+.sidebar-item {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -73,13 +73,12 @@ body {
   text-decoration: none;
   color: white;
 }
-.month-item:hover { background: rgba(255,255,255,0.1); }
-.month-item.active { background: var(--primary); border-color: var(--accent); }
-.month-item i { font-size: 1.2rem; }
-.month-item span { font-weight: 600; font-size: 0.95rem; }
+.sidebar-item:hover { background: rgba(255,255,255,0.1); }
+.sidebar-item.active { background: var(--primary); border-color: var(--accent); }
+.sidebar-item i { font-size: 1.2rem; }
+.sidebar-item span { font-weight: 600; font-size: 0.95rem; }
 
 .upload-area {
-  margin-top: 30px;
   background: rgba(78, 205, 196, 0.1);
   border: 2px dashed var(--secondary);
   padding: 20px;
@@ -203,130 +202,6 @@ main {
 }
 .section-title i { color: var(--secondary); }
 
-/* Safe/Unsafe Game */
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-.action-card {
-  background: var(--light);
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-  border: 3px solid transparent;
-  transition: 0.3s;
-}
-.action-card .icon { font-size: 3rem; margin-bottom: 10px; }
-.action-card .text { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
-.btn-group { display: flex; gap: 10px; justify-content: center; }
-.btn-game {
-  padding: 8px 16px;
-  border-radius: 12px;
-  border: none;
-  font-family: 'Fredoka', cursive;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.btn-safe { background: var(--safe); color: white; }
-.btn-unsafe { background: var(--unsafe); color: white; }
-.btn-game:hover { transform: scale(1.1); }
-.action-card.correct { background: #E8F8F5; border-color: var(--safe); pointer-events: none; }
-.action-card.incorrect { background: #FDEDEE; border-color: var(--unsafe); pointer-events: none; }
-
-/* Comic Story */
-.comic-panel {
-  background: #FFF8E1;
-  border: 4px solid var(--dark);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
-}
-.comic-panel::before {
-  content: 'I believe in myself!';
-  position: absolute;
-  top: -15px;
-  right: 20px;
-  background: var(--accent);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-weight: 700;
-  border: 2px solid var(--dark);
-  transform: rotate(5deg);
-}
-.comic-text { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; }
-.fill-blank {
-  display: inline-block;
-  width: 150px;
-  padding: 2px 10px;
-  margin: 0 5px;
-  border: 3px dashed var(--primary);
-  border-radius: 8px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--primary);
-}
-.story-input { font-size: 1.1rem; padding: 10px; border: 3px solid var(--secondary); border-radius: 12px; width: 100%; margin-top: 15px; font-family: 'Fredoka', cursive;}
-
-/* Maze Adventure */
-.maze-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #E0F2F1;
-  padding: 20px;
-  border-radius: 16px;
-}
-.maze-instructions { font-size: 1.1rem; margin-bottom: 15px; text-align: center; }
-.maze-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 60px);
-  grid-template-rows: repeat(5, 60px);
-  gap: 4px;
-  background: var(--dark);
-  padding: 4px;
-  border-radius: 12px;
-  outline: none;
-}
-.maze-cell {
-  background: #E0F7FA;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-}
-.maze-cell.wall { background: var(--primary); }
-.maze-cell.start { background: var(--secondary); }
-.maze-cell.end { background: var(--accent); }
-.maze-player { animation: bounce 1s infinite; }
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-
-/* Drawing Canvas */
-.draw-container {
-  background: #F3E5F5;
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-}
-.color-palette { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; }
-.color-dot {
-  width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
-  border: 3px solid var(--dark); transition: 0.2s;
-}
-.color-dot:hover { transform: scale(1.2); }
-.color-dot.active { box-shadow: 0 0 0 4px white, 0 0 0 7px var(--dark); }
-#drawCanvas {
-  background: white;
-  border: 5px solid var(--dark);
-  border-radius: 12px;
-  cursor: crosshair;
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
-  touch-action: none;
-}
-
 footer {
   text-align: center;
   padding: 30px;
@@ -362,61 +237,42 @@ footer p { color: var(--secondary); font-weight: 600; }
 <aside class="sidebar">
   <div class="creator-badge">
     <i class="fas fa-feather-pointed"></i>
-    <h3>Created by<br>معلم مبدع فرع دمياط</h3>
-    <h3>Created by<br>Creative teachers Damietta branch</h3>
-    <p>Dr Mariam</p>
+    <h3>معلم مبدع فرع دمياط<br>Creative teachers Damietta branch</h3>
   </div>
 
-  <div class="month-list">
+  <div class="sidebar-section">
+    <h4><i class="fas fa-images"></i> Image Galleries</h4>
+    <div class="sidebar-item" onclick="loadGallery('Idioms', 13, 'idioms/', this)">
+      <i class="fas fa-comment-dots"></i>
+      <span>Idioms (13 images)</span>
+    </div>
+    <div class="sidebar-item" onclick="loadGallery('Games Time', 6, 'games/', this)">
+      <i class="fas fa-gamepad"></i>
+      <span>Games Time (6 images)</span>
+    </div>
+    <div class="sidebar-item" onclick="loadGallery('Posters', 10, 'posters/', this)">
+      <i class="fas fa-image"></i>
+      <span>Posters (10 images)</span>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
     <h4><i class="fas fa-calendar-days"></i> 2026 Magazines</h4>
-    
-    <a href="1.html" class="month-item active">
+    <a href="javascript:void(0)" class="sidebar-item active" onclick="loadMonth1(this)">
       <i class="fas fa-star"></i>
       <span>Month 1 - Issue 1</span>
     </a>
-    <a href="2.html" class="month-item">
+    <a href="2.html" class="sidebar-item">
       <i class="fas fa-lock"></i>
       <span>Month 2 - Issue 2</span>
     </a>
-    <a href="3.html" class="month-item">
+    <a href="3.html" class="sidebar-item">
       <i class="fas fa-lock"></i>
       <span>Month 3 - Issue 3</span>
     </a>
-    <a href="4.html" class="month-item">
+    <a href="4.html" class="sidebar-item">
       <i class="fas fa-lock"></i>
       <span>Month 4 - Issue 4</span>
-    </a>
-    <a href="5.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 5 - Issue 5</span>
-    </a>
-    <a href="6.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 6 - Issue 6</span>
-    </a>
-    <a href="7.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 7 - Issue 7</span>
-    </a>
-    <a href="8.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 8 - Issue 8</span>
-    </a>
-    <a href="9.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 9 - Issue 9</span>
-    </a>
-    <a href="10.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 10 - Issue 10</span>
-    </a>
-    <a href="11.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 11 - Issue 11</span>
-    </a>
-    <a href="12.html" class="month-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 12 - Issue 12</span>
     </a>
   </div>
 
@@ -431,108 +287,73 @@ footer p { color: var(--secondary); font-weight: 600; }
 <div class="main-content">
   <header>
     <div class="badge">2026: Issue 1</div>
-    <h1>Screens Off, Dreams On!</h1>
-    <p>Learn, Play, Focus, and Dream!</p>
+    <h1>نافذه دمياط</h1>
+    <p>&nbsp;</p>
   </header>
 
   <main>
-    <!-- This Month's Magazine (With Hardcoded Images) -->
+    <!-- This Month's Magazine (Hardcoded Default Images) -->
     <section class="section-card material-viewer">
-      <div class="section-title" style="justify-content: center;"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
+      <div class="section-title" style="justify-content: center;" id="viewerTitle"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
       <div id="materialDisplay" class="material-images">
-        <!-- Image 1 -->
-        <img src="https://z-cdn-media.chatglm.cn/files/1d6e007d-3642-4a14-869d-513ca370e1a7.jpeg?auth_key=1886700963-f0017e9eee644ec4add425fd9d446da9-0-fb6c3421e5d1fe5b333bacd844239279" alt="Internet Safety Adventure Page 1">
-        <!-- Image 2 -->
-        <img src="https://z-cdn-media.chatglm.cn/files/eb8dad68-b3b8-42a3-a501-b5afc81b9dc5.jpeg?auth_key=1886700963-820606a36e324fc2959887b17ff643ad-0-c17cda3bf070dfb2f825902520c99ddc" alt="Internet Safety Adventure Page 2">
-      </div>
-    </section>
-
-    <!-- Safe/Unsafe Game -->
-    <section class="section-card">
-      <div class="section-title"><i class="fas fa-shield-alt"></i> Safe or Unsafe?</div>
-      <p style="margin-bottom: 20px; font-size: 1.1rem;">Click whether the action is SAFE or UNSAFE!</p>
-      <div class="game-grid">
-        
-        <div class="action-card" id="card1">
-          <div class="icon">🤫</div>
-          <div class="text">Sharing my password with my best friend</div>
-          <div class="btn-group">
-            <button class="btn-game btn-safe" onclick="checkAnswer('card1', false, true)">Safe</button>
-            <button class="btn-game btn-unsafe" onclick="checkAnswer('card1', true, true)">Unsafe</button>
-          </div>
-        </div>
-
-        <div class="action-card" id="card2">
-          <div class="icon">⏰</div>
-          <div class="text">Taking a break from the screen to go play outside</div>
-          <div class="btn-group">
-            <button class="btn-game btn-safe" onclick="checkAnswer('card2', false, false)">Safe</button>
-            <button class="btn-game btn-unsafe" onclick="checkAnswer('card2', true, false)">Unsafe</button>
-          </div>
-        </div>
-
-        <div class="action-card" id="card3">
-          <div class="icon">👀</div>
-          <div class="text">Clicking a link from a stranger for free games</div>
-          <div class="btn-group">
-            <button class="btn-game btn-safe" onclick="checkAnswer('card3', false, true)">Safe</button>
-            <button class="btn-game btn-unsafe" onclick="checkAnswer('card3', true, true)">Unsafe</button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Comic Story -->
-    <section class="section-card">
-      <div class="section-title"><i class="fas fa-book-open"></i> Comic Story Time</div>
-      <div class="comic-panel">
-        <p class="comic-text">
-          Meet Max and his robot friend, Byte! 🤖<br><br>
-          Max wanted to play his favorite online game, but a pop-up said: "Click here for a million free coins!"<br>
-          Max remembered what Byte taught him: <strong>Never click strange pop-ups!</strong><br><br>
-          Instead, Max went to read a book and let his mind <span class="fill-blank" id="blankWord">______</span>!
-        </p>
-        <input type="text" class="story-input" id="storyInput" placeholder="Type your word here to finish the story!" oninput="updateStory()">
-      </div>
-    </section>
-
-    <!-- Maze Adventure -->
-    <section class="section-card">
-      <div class="section-title"><i class="fas fa-route"></i> Maze Adventure</div>
-      <div class="maze-container">
-        <p class="maze-instructions">Use the Arrow Keys (⬆️ ⬇️ ⬅️ ➡️) to guide Max to his book!</p>
-        <div class="maze-grid" id="mazeGrid" tabindex="0">
-          <!-- Grid generated by JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Draw & Create -->
-    <section class="section-card">
-      <div class="section-title"><i class="fas fa-paint-brush"></i> Color, Draw & Create!</div>
-      <div class="draw-container">
-        <div class="color-palette">
-          <div class="color-dot active" style="background: #FF6B6B;" onclick="changeColor('#FF6B6B', this)"></div>
-          <div class="color-dot" style="background: #4ECDC4;" onclick="changeColor('#4ECDC4', this)"></div>
-          <div class="color-dot" style="background: #FFE66D;" onclick="changeColor('#FFE66D', this)"></div>
-          <div class="color-dot" style="background: #2A2A40;" onclick="changeColor('#2A2A40', this)"></div>
-          <div class="color-dot" style="background: #2ECC71;" onclick="changeColor('#2ECC71', this)"></div>
-        </div>
-        <canvas id="drawCanvas"></canvas>
+        <!-- Hardcoded images to ensure they load immediately -->
+        <img src="main/1.jpeg" alt="Main Page Image 1">
+        <img src="main/2.jpeg" alt="Main Page Image 2">
       </div>
     </section>
   </main>
 
   <footer>
-    <h3>Screens Off, Dreams On!</h3>
-    <p>Created by Miss Mariam Alemam Alagery</p>
-    <p style="margin-top: 10px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">See you next week for more adventures! 🌟</p>
+    <h3>نافذه دمياط</h3>
+    <p>معلم مبدع فرع دمياط</p>
   </footer>
 </div>
 
 <script>
-// --- File Upload Logic (For future use if needed) ---
+// --- Dynamic Gallery Loader ---
+function loadGallery(title, count, basePath, el) {
+  // Update active state in sidebar
+  document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+  el.classList.add('active');
+
+  const display = document.getElementById('materialDisplay');
+  const viewerTitle = document.getElementById('viewerTitle');
+  
+  viewerTitle.innerHTML = `<i class="fas fa-images"></i> ${title}`;
+  display.innerHTML = ''; // Clear previous images
+  
+  for(let i = 1; i <= count; i++) {
+    const img = document.createElement('img');
+    img.src = `${basePath}${i}.jpeg`;
+    img.alt = `${title} Image ${i}`;
+    
+    // Hide image if it fails to load to prevent broken image icons
+    img.onerror = function() {
+      this.style.display = 'none';
+    };
+    
+    display.appendChild(img);
+  }
+  
+  // Scroll to the top of the viewer
+  document.querySelector('.material-viewer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function loadMonth1(el) {
+  document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+  el.classList.add('active');
+  
+  const display = document.getElementById('materialDisplay');
+  const viewerTitle = document.getElementById('viewerTitle');
+  
+  viewerTitle.innerHTML = `<i class="fas fa-book-open-reader"></i> This Month's Magazine`;
+  display.innerHTML = `
+    <img src="main/1.jpeg" alt="Main Page Image 1">
+    <img src="main/2.jpeg" alt="Main Page Image 2">
+  `;
+}
+
+// --- File Upload Logic ---
 document.getElementById('magUpload').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
@@ -555,132 +376,6 @@ document.getElementById('magUpload').addEventListener('change', function(e) {
     reader.readAsDataURL(file);
   }
 });
-
-// --- Safe/Unsafe Game Logic ---
-function checkAnswer(cardId, userClickedUnsafe, actualIsUnsafe) {
-  const card = document.getElementById(cardId);
-  if (userClickedUnsafe === actualIsUnsafe) {
-    card.classList.add('correct');
-  } else {
-    card.classList.add('incorrect');
-  }
-}
-
-// --- Story Logic ---
-function updateStory() {
-  const inputVal = document.getElementById('storyInput').value || '______';
-  document.getElementById('blankWord').innerText = inputVal;
-}
-
-// --- Maze Logic ---
-const mazeLayout = [
-  ['start', 'path', 'path', 'wall', 'end'],
-  ['wall', 'wall', 'path', 'wall', 'path'],
-  ['path', 'path', 'path', 'path', 'path'],
-  ['path', 'wall', 'wall', 'wall', 'path'],
-  ['path', 'path', 'path', 'path', 'path']
-];
-
-let playerPos = { x: 0, y: 0 };
-const mazeGrid = document.getElementById('mazeGrid');
-
-function drawMaze() {
-  mazeGrid.innerHTML = '';
-  mazeLayout.forEach((row, y) => {
-    row.forEach((cell, x) => {
-      const div = document.createElement('div');
-      div.classList.add('maze-cell');
-      if (cell === 'wall') div.classList.add('wall');
-      if (cell === 'start') div.classList.add('start');
-      if (cell === 'end') div.classList.add('end');
-      
-      if (playerPos.x === x && playerPos.y === y) {
-        div.innerHTML = '<span class="maze-player">🧒</span>';
-      } else if (cell === 'end') {
-        div.innerHTML = '📚';
-      }
-      mazeGrid.appendChild(div);
-    });
-  });
-}
-
-// Keydown listener with input check fix
-document.addEventListener('keydown', (e) => {
-  if (document.activeElement.tagName === 'INPUT') return; // Prevent moving maze while typing
-
-  let moved = false;
-  if (e.key === 'ArrowUp' && playerPos.y > 0 && mazeLayout[playerPos.y-1][playerPos.x] !== 'wall') {
-    playerPos.y--; moved = true;
-  } else if (e.key === 'ArrowDown' && playerPos.y < 4 && mazeLayout[playerPos.y+1][playerPos.x] !== 'wall') {
-    playerPos.y++; moved = true;
-  } else if (e.key === 'ArrowLeft' && playerPos.x > 0 && mazeLayout[playerPos.y][playerPos.x-1] !== 'wall') {
-    playerPos.x--; moved = true;
-  } else if (e.key === 'ArrowRight' && playerPos.x < 4 && mazeLayout[playerPos.y][playerPos.x+1] !== 'wall') {
-    playerPos.x++; moved = true;
-  }
-
-  if (moved) {
-    e.preventDefault(); 
-    drawMaze();
-    if (mazeLayout[playerPos.y][playerPos.x] === 'end') {
-      setTimeout(() => alert('Great job! You found the book! 🎉'), 100);
-    }
-  }
-});
-
-drawMaze();
-
-// --- Drawing Canvas Logic ---
-const canvas = document.getElementById('drawCanvas');
-const ctx = canvas.getContext('2d');
-let drawing = false;
-let currentColor = '#FF6B6B';
-
-function resizeCanvas() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-  ctx.lineWidth = 5;
-  ctx.lineCap = 'round';
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function changeColor(color, element) {
-  currentColor = color;
-  document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
-  element.classList.add('active');
-}
-
-canvas.addEventListener('mousedown', (e) => {
-  drawing = true;
-  ctx.beginPath();
-  ctx.moveTo(e.offsetX, e.offsetY);
-});
-canvas.addEventListener('mousemove', (e) => {
-  if (!drawing) return;
-  ctx.strokeStyle = currentColor;
-  ctx.lineTo(e.offsetX, e.offsetY);
-  ctx.stroke();
-});
-canvas.addEventListener('mouseup', () => drawing = false);
-canvas.addEventListener('mouseleave', () => drawing = false);
-
-// Touch support for mobile
-canvas.addEventListener('touchstart', (e) => {
-  drawing = true;
-  ctx.beginPath();
-  const rect = canvas.getBoundingClientRect();
-  ctx.moveTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
-});
-canvas.addEventListener('touchmove', (e) => {
-  if (!drawing) return;
-  e.preventDefault();
-  const rect = canvas.getBoundingClientRect();
-  ctx.strokeStyle = currentColor;
-  ctx.lineTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
-  ctx.stroke();
-});
-canvas.addEventListener('touchend', () => drawing = false);
 </script>
 
 </body>
