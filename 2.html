@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> نافذه دمياط </title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  /* New Pleasant and Compatible Color Palette */
+  --primary: #E76F51;      /* Soft Coral for Headers */
+  --secondary: #2A9D8F;    /* Teal for Buttons/Borders */
+  --accent: #E9C46A;       /* Soft Sand/Yellow for Highlights */
+  --dark: #264653;         /* Dark Slate Blue for Sidebar/Text */
+  --light: #F4F1DE;        /* Creamy Off-White for Cards */
+  --sidebar-bg: #264653;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Fredoka', cursive;
+  /* Soft background gradient */
+  background: linear-gradient(135deg, #E9F5F3 0%, #FFF8F0 100%);
+  color: var(--dark);
+  overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- SIDEBAR (LEFT PANEL) --- */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar-bg);
+  color: white;
+  padding: 25px 20px;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 6px solid var(--secondary);
+  z-index: 100;
+}
+.creator-badge {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.creator-badge i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
+.creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; color: white; }
+
+/* Main Page Button - Made it Teal to stand out beautifully */
+.main-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--secondary);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.main-page-btn:hover { background: #21867A; transform: translateY(-2px); }
+.main-page-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+
+.sidebar-section { margin-bottom: 30px; }
+.sidebar-section h4 {
+  font-family: 'Bungee', cursive;
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+  text-decoration: none;
+  color: white;
+}
+.sidebar-item:hover { background: rgba(255,255,255,0.15); transform: translateX(5px); }
+.sidebar-item.active { background: var(--primary); border-color: var(--accent); color: white; }
+.sidebar-item i { font-size: 1.2rem; color: var(--accent); }
+.sidebar-item.active i { color: white; }
+.sidebar-item span { font-weight: 600; font-size: 0.95rem; }
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  margin-left: 280px;
+  flex: 1;
+  padding: 0 0 40px 0;
+  width: calc(100% - 280px);
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  border-bottom: 10px solid var(--secondary);
+  position: relative;
+}
+header h1 {
+  font-family: 'Bungee', cursive;
+  font-size: 3rem;
+  text-shadow: 4px 4px 0px var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+header p { font-size: 1.4rem; font-weight: 600; color: var(--light); }
+header .badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: var(--dark);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  transform: rotate(10deg);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+main {
+  max-width: 1000px;
+  margin: -30px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.material-viewer {
+  background: white;
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(38, 70, 83, 0.1);
+  border: 4px solid var(--dark);
+  text-align: center;
+}
+.material-viewer h3 { color: var(--primary); margin-bottom: 15px; font-family: 'Bungee', cursive; }
+.material-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.material-viewer img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 4px solid var(--light);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.material-display {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.section-card {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(38, 70, 83, 0.1);
+  border: 4px solid var(--dark);
+  transition: transform 0.3s;
+}
+.section-card:hover { transform: translateY(-5px); }
+.section-title {
+  font-family: 'Bungee', cursive;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+.section-title i { color: var(--secondary); }
+
+/* --- FORMS & SUBMISSIONS STYLES --- */
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+.form-card {
+  background: var(--light);
+  border: 2px solid var(--secondary);
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-decoration: none;
+  color: var(--dark);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.form-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: white;
+}
+.form-card i {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+.form-card.form-type i { color: #7e57c2; } /* Google Forms Purple */
+.form-card.sheet-type i { color: #0F9D58; } /* Google Sheets Green */
+.form-card h3 { font-family: 'Bungee', cursive; font-size: 1.2rem; margin-bottom: 10px; color: var(--dark); }
+.form-card p { font-size: 0.9rem; color: var(--dark); margin-bottom: 20px; opacity: 0.8; }
+.form-link {
+  background: var(--secondary);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--dark);
+  color: white;
+  margin-top: 40px;
+}
+footer h3 { font-family: 'Bungee', cursive; color: var(--accent); margin-bottom: 10px; }
+footer p { color: var(--secondary); font-weight: 600; }
+
+@media (max-width: 900px) {
+  body { flex-direction: column; }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 6px solid var(--secondary);
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  header h1 { font-size: 2.2rem; }
+  header .badge { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- LEFT PANEL SIDEBAR -->
+<aside class="sidebar">
+  <div class="creator-badge">
+    <i class="fas fa-feather-pointed"></i>
+    <h3>معلم مبدع فرع دمياط<br>Creative teachers<br>Damietta branch</h3>
+  </div>
+
+  <!-- Main Page Button -->
+  <div class="main-page-btn active" id="mainPageBtn" onclick="showSection('mainSection', this)">
+    <i class="fas fa-house"></i> Back to Main Page
+  </div>
+
+  <div class="sidebar-section">
+    <h4><i class="fas fa-images"></i> Image Galleries</h4>
+    <div class="sidebar-item" onclick="showSection('magazinesSection', this)">
+      <i class="fas fa-newspaper"></i>
+      <span>Magazines</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('idiomsSection', this)">
+      <i class="fas fa-comment-dots"></i>
+      <span>Idioms</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('gamesSection', this)">
+      <i class="fas fa-gamepad"></i>
+      <span>Games Time</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('postersSection', this)">
+      <i class="fas fa-image"></i>
+      <span>Posters</span>
+    </div>
+  </div>
+
+  <!-- New Forms & Submissions Section -->
+  <div class="sidebar-section">
+    <h4><i class="fas fa-clipboard-list"></i> Submissions</h4>
+    <div class="sidebar-item" onclick="showSection('formsSection', this)">
+      <i class="fas fa-file-alt"></i>
+      <span>Forms & Sheets</span>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+  <header>
+    <div class="badge">2026: Issue 1</div>
+    <h1>نافذه دمياط</h1>
+    <p>&nbsp;</p>
+  </header>
+
+  <main>
+    <!-- MAIN MONTH 1 SECTION -->
+    <section class="section-card material-viewer" id="mainSection">
+      <div class="section-title"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
+      <div class="material-display">
+        <img src="main/1.jpeg" alt="Main Page Image 1">
+        <img src="main/2.jpeg" alt="Main Page Image 2">
+      </div>
+    </section>
+
+    <!-- MAGAZINES SECTION (6 Images) -->
+    <section class="section-card material-viewer" id="magazinesSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-newspaper"></i> Magazines</div>
+      <div class="material-display">
+        <img src="magazines/1.jpeg" alt="Magazines Image 1">
+        <img src="magazines/2.jpeg" alt="Magazines Image 2">
+        <img src="magazines/3.jpeg" alt="Magazines Image 3">
+        <img src="magazines/4.jpeg" alt="Magazines Image 4">
+        <img src="magazines/5.jpeg" alt="Magazines Image 5">
+        <img src="magazines/6.jpeg" alt="Magazines Image 6">
+      </div>
+    </section>
+
+    <!-- IDIOMS SECTION -->
+    <section class="section-card material-viewer" id="idiomsSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-comment-dots"></i> Idioms</div>
+      <div class="material-display">
+        <img src="idioms/1.jpeg" alt="Idioms Image 1">
+        <img src="idioms/2.jpeg" alt="Idioms Image 2">
+        <img src="idioms/3.jpeg" alt="Idioms Image 3">
+        <img src="idioms/4.jpeg" alt="Idioms Image 4">
+        <img src="idioms/5.jpeg" alt="Idioms Image 5">
+        <img src="idioms/6.jpeg" alt="Idioms Image 6">
+        <img src="idioms/7.jpeg" alt="Idioms Image 7">
+        <img src="idioms/8.jpeg" alt="Idioms Image 8">
+        <img src="idioms/9.jpeg" alt="Idioms Image 9">
+        <img src="idioms/10.jpeg" alt="Idioms Image 10">
+        <img src="idioms/11.jpeg" alt="Idioms Image 11">
+        <img src="idioms/12.jpeg" alt="Idioms Image 12">
+        <img src="idioms/13.jpeg" alt="Idioms Image 13">
+      </div>
+    </section>
+
+    <!-- GAMES TIME SECTION -->
+    <section class="section-card material-viewer" id="gamesSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-gamepad"></i> Games Time</div>
+      <div class="material-display">
+        <img src="games/1.jpeg" alt="Games Image 1">
+        <img src="games/2.jpeg" alt="Games Image 2">
+        <img src="games/3.jpeg" alt="Games Image 3">
+        <img src="games/4.jpeg" alt="Games Image 4">
+        <img src="games/5.jpeg" alt="Games Image 5">
+        <img src="games/6.jpeg" alt="Games Image 6">
+      </div>
+    </section>
+
+    <!-- POSTERS SECTION -->
+    <section class="section-card material-viewer" id="postersSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-image"></i> Posters</div>
+      <div class="material-display">
+        <img src="posters/1.jpeg" alt="Posters Image 1">
+        <img src="posters/2.jpeg" alt="Posters Image 2">
+        <img src="posters/3.jpeg" alt="Posters Image 3">
+        <img src="posters/4.jpeg" alt="Posters Image 4">
+        <img src="posters/5.jpeg" alt="Posters Image 5">
+        <img src="posters/6.jpeg" alt="Posters Image 6">
+        <img src="posters/7.jpeg" alt="Posters Image 7">
+        <img src="posters/8.jpeg" alt="Posters Image 8">
+        <img src="posters/9.jpeg" alt="Posters Image 9">
+        <img src="posters/10.jpeg" alt="Posters Image 10">
+      </div>
+    </section>
+
+    <!-- FORMS & SUBMISSIONS SECTION -->
+    <section class="section-card material-viewer" id="formsSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-clipboard-list"></i> Forms & Submissions</div>
+      <p style="font-size: 1.1rem; margin-bottom: 20px; color: var(--dark);">Click a card below to open the Google Form or view the response spreadsheet.</p>
+      
+      <div class="forms-grid">
+        <!-- Google Form 1 -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEUwRTyHZrIla739SS9Cy6IduKnI79GSZN4Ep_kBG70SW1qw/viewform?usp=header" target="_blank" class="form-card form-type">
+          <i class="fab fa-google-drive"></i>
+          <h3>Google Form 1</h3>
+          <p>Click here to fill out the form.</p>
+          <span class="form-link">Open Form <i class="fas fa-external-link-alt"></i></span>
+        </a>
+
+        <!-- Google Form 2 -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxvG-V6tfboh4oEzonMqirkO1jyRbWHP0_hHccFY3bVV1FMA/viewform?usp=header" target="_blank" class="form-card form-type">
+          <i class="fab fa-google-drive"></i>
+          <h3>Google Form 2</h3>
+          <p>Click here to fill out the form.</p>
+          <span class="form-link">Open Form <i class="fas fa-external-link-alt"></i></span>
+        </a>
+
+        <!-- Google Sheet 1 (Responses) -->
+        <a href="https://docs.google.com/spreadsheets/d/1GaW0l3cXo6H67ZbqbTbNCyCv1WhVJhIpQm-bNqsRm1E/edit?usp=sharing" target="_blank" class="form-card sheet-type">
+          <i class="fas fa-table"></i>
+          <h3>Response Sheet 1</h3>
+          <p>View the submitted responses.</p>
+          <span class="form-link">Open Sheet <i class="fas fa-external-link-alt"></i></span>
+        </a>
+
+        <!-- Google Sheet 2 (Responses) -->
+        <a href="https://docs.google.com/spreadsheets/d/1LQ1wXaQOJtcKeicuhlIkgbFgwZeED4_iCQ1dopyYxCg/edit?usp=sharing" target="_blank" class="form-card sheet-type">
+          <i class="fas fa-table"></i>
+          <h3>Response Sheet 2</h3>
+          <p>View the submitted responses.</p>
+          <span class="form-link">Open Sheet <i class="fas fa-external-link-alt"></i></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>نافذه دمياط</h3>
+    <p>معلم مبدع فرع دمياط</p>
+  </footer>
+</div>
+
+<script>
+// --- Section Toggle Logic ---
+function showSection(sectionId, el) {
+  // Remove active state from all sidebar items and the main page button
+  document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+  document.getElementById('mainPageBtn').classList.remove('active');
+
+  // Add active state to the clicked element
+  el.classList.add('active');
+
+  // Hide all sections
+  document.getElementById('mainSection').style.display = 'none';
+  document.getElementById('magazinesSection').style.display = 'none';
+  document.getElementById('idiomsSection').style.display = 'none';
+  document.getElementById('gamesSection').style.display = 'none';
+  document.getElementById('postersSection').style.display = 'none';
+  document.getElementById('formsSection').style.display = 'none';
+
+  // Show the selected section
+  document.getElementById(sectionId).style.display = 'block';
+  
+  // Scroll to the top of the viewer
+  document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+</body>
+</html>
