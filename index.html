@@ -8,19 +8,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root {
-  --primary: #FF6B6B;
-  --secondary: #4ECDC4;
-  --accent: #FFE66D;
-  --dark: #2A2A40;
-  --light: #F7F9FC;
-  --safe: #2ECC71;
-  --unsafe: #E74C3C;
-  --sidebar-bg: #2A2A40;
+  /* New Pleasant and Compatible Color Palette */
+  --primary: #E76F51;      /* Soft Coral for Headers */
+  --secondary: #2A9D8F;    /* Teal for Buttons/Borders */
+  --accent: #E9C46A;       /* Soft Sand/Yellow for Highlights */
+  --dark: #264653;         /* Dark Slate Blue for Sidebar/Text */
+  --light: #F4F1DE;        /* Creamy Off-White for Cards */
+  --sidebar-bg: #264653;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Fredoka', cursive;
-  background: linear-gradient(135deg, #E0F7FA 0%, #FFF9C4 100%);
+  /* Soft background gradient */
+  background: linear-gradient(135deg, #E9F5F3 0%, #FFF8F0 100%);
   color: var(--dark);
   overflow-x: hidden;
   display: flex;
@@ -46,15 +46,16 @@ body {
   border-bottom: 2px solid rgba(255,255,255,0.1);
 }
 .creator-badge i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
-.creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
+.creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; color: white; }
 
+/* Main Page Button - Made it Teal to stand out beautifully */
 .main-page-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: var(--accent);
-  color: var(--dark);
+  background: var(--secondary);
+  color: white;
   padding: 12px;
   border-radius: 8px;
   text-decoration: none;
@@ -63,9 +64,10 @@ body {
   transition: 0.2s;
   cursor: pointer;
   border: 2px solid transparent;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-.main-page-btn:hover { background: var(--secondary); }
-.main-page-btn.active { border-color: var(--primary); }
+.main-page-btn:hover { background: #21867A; transform: translateY(-2px); }
+.main-page-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
 
 .sidebar-section { margin-bottom: 30px; }
 .sidebar-section h4 {
@@ -85,7 +87,7 @@ body {
   gap: 12px;
   padding: 12px 15px;
   margin-bottom: 10px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.08);
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
@@ -93,9 +95,10 @@ body {
   text-decoration: none;
   color: white;
 }
-.sidebar-item:hover { background: rgba(255,255,255,0.1); }
-.sidebar-item.active { background: var(--primary); border-color: var(--accent); }
-.sidebar-item i { font-size: 1.2rem; }
+.sidebar-item:hover { background: rgba(255,255,255,0.15); transform: translateX(5px); }
+.sidebar-item.active { background: var(--primary); border-color: var(--accent); color: white; }
+.sidebar-item i { font-size: 1.2rem; color: var(--accent); }
+.sidebar-item.active i { color: white; }
 .sidebar-item span { font-weight: 600; font-size: 0.95rem; }
 
 /* --- MAIN CONTENT --- */
@@ -121,7 +124,7 @@ header h1 {
   margin-bottom: 10px;
   line-height: 1.2;
 }
-header p { font-size: 1.4rem; font-weight: 600; color: var(--accent); }
+header p { font-size: 1.4rem; font-weight: 600; color: var(--light); }
 header .badge {
   position: absolute;
   top: 20px;
@@ -148,7 +151,7 @@ main {
   background: white;
   border-radius: 24px;
   padding: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(38, 70, 83, 0.1);
   border: 4px solid var(--dark);
   text-align: center;
 }
@@ -177,7 +180,7 @@ main {
   background: white;
   border-radius: 24px;
   padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(38, 70, 83, 0.1);
   border: 4px solid var(--dark);
   transition: transform 0.3s;
 }
@@ -230,6 +233,7 @@ footer p { color: var(--secondary); font-weight: 600; }
     <h3>معلم مبدع فرع دمياط<br>Creative teachers<br>Damietta branch</h3>
   </div>
 
+  <!-- Main Page Button -->
   <div class="main-page-btn active" id="mainPageBtn" onclick="showSection('mainSection', this)">
     <i class="fas fa-house"></i> Back to Main Page
   </div>
@@ -238,15 +242,15 @@ footer p { color: var(--secondary); font-weight: 600; }
     <h4><i class="fas fa-images"></i> Image Galleries</h4>
     <div class="sidebar-item" onclick="showSection('idiomsSection', this)">
       <i class="fas fa-comment-dots"></i>
-      <span>Idioms (13 images)</span>
+      <span>Idioms</span>
     </div>
     <div class="sidebar-item" onclick="showSection('gamesSection', this)">
       <i class="fas fa-gamepad"></i>
-      <span>Games Time (6 images)</span>
+      <span>Games Time</span>
     </div>
     <div class="sidebar-item" onclick="showSection('postersSection', this)">
       <i class="fas fa-image"></i>
-      <span>Posters (10 images)</span>
+      <span>Posters</span>
     </div>
   </div>
 </aside>
@@ -269,7 +273,7 @@ footer p { color: var(--secondary); font-weight: 600; }
       </div>
     </section>
 
-    <!-- IDIOMS SECTION (13 Images) -->
+    <!-- IDIOMS SECTION -->
     <section class="section-card material-viewer" id="idiomsSection" style="display: none;">
       <div class="section-title" style="justify-content: center;"><i class="fas fa-comment-dots"></i> Idioms</div>
       <div class="material-display">
@@ -289,7 +293,7 @@ footer p { color: var(--secondary); font-weight: 600; }
       </div>
     </section>
 
-    <!-- GAMES TIME SECTION (6 Images) -->
+    <!-- GAMES TIME SECTION -->
     <section class="section-card material-viewer" id="gamesSection" style="display: none;">
       <div class="section-title" style="justify-content: center;"><i class="fas fa-gamepad"></i> Games Time</div>
       <div class="material-display">
@@ -302,7 +306,7 @@ footer p { color: var(--secondary); font-weight: 600; }
       </div>
     </section>
 
-    <!-- POSTERS SECTION (10 Images) -->
+    <!-- POSTERS SECTION -->
     <section class="section-card material-viewer" id="postersSection" style="display: none;">
       <div class="section-title" style="justify-content: center;"><i class="fas fa-image"></i> Posters</div>
       <div class="material-display">
