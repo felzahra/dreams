@@ -41,12 +41,31 @@ body {
 }
 .creator-badge {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 2px solid rgba(255,255,255,0.1);
 }
 .creator-badge i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
 .creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; }
+
+.main-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent);
+  color: var(--dark);
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.main-page-btn:hover { background: var(--secondary); }
+.main-page-btn.active { border-color: var(--primary); }
 
 .sidebar-section { margin-bottom: 30px; }
 .sidebar-section h4 {
@@ -59,6 +78,7 @@ body {
   align-items: center;
   gap: 10px;
 }
+
 .sidebar-item {
   display: flex;
   align-items: center;
@@ -77,33 +97,6 @@ body {
 .sidebar-item.active { background: var(--primary); border-color: var(--accent); }
 .sidebar-item i { font-size: 1.2rem; }
 .sidebar-item span { font-weight: 600; font-size: 0.95rem; }
-
-.upload-area {
-  background: rgba(78, 205, 196, 0.1);
-  border: 2px dashed var(--secondary);
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-}
-.upload-area label {
-  display: block;
-  color: var(--secondary);
-  font-weight: 700;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-.upload-area input[type="file"] { display: none; }
-.upload-btn {
-  background: var(--secondary);
-  color: var(--dark);
-  padding: 8px 15px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-  display: inline-block;
-}
-.upload-btn:hover { background: var(--accent); }
 
 /* --- MAIN CONTENT --- */
 .main-content {
@@ -151,7 +144,6 @@ main {
   gap: 30px;
 }
 
-/* Magazine Material Viewer */
 .material-viewer {
   background: white;
   border-radius: 24px;
@@ -181,7 +173,6 @@ main {
   margin-top: 15px;
 }
 
-/* General Section Card */
 .section-card {
   background: white;
   border-radius: 24px;
@@ -212,7 +203,6 @@ footer {
 footer h3 { font-family: 'Bungee', cursive; color: var(--accent); margin-bottom: 10px; }
 footer p { color: var(--secondary); font-weight: 600; }
 
-/* Responsive */
 @media (max-width: 900px) {
   body { flex-direction: column; }
   .sidebar {
@@ -237,7 +227,11 @@ footer p { color: var(--secondary); font-weight: 600; }
 <aside class="sidebar">
   <div class="creator-badge">
     <i class="fas fa-feather-pointed"></i>
-    <h3>معلم مبدع فرع دمياط<br>Creative teachers Damietta branch</h3>
+    <h3>معلم مبدع فرع دمياط<br>Creative teachers<br>Damietta branch</h3>
+  </div>
+
+  <div class="main-page-btn active" id="mainPageBtn" onclick="showSection('mainSection', this)">
+    <i class="fas fa-house"></i> Back to Main Page
   </div>
 
   <div class="sidebar-section">
@@ -254,32 +248,6 @@ footer p { color: var(--secondary); font-weight: 600; }
       <i class="fas fa-image"></i>
       <span>Posters (10 images)</span>
     </div>
-  </div>
-
-  <div class="sidebar-section">
-    <h4><i class="fas fa-calendar-days"></i> 2026 Magazines</h4>
-    <a href="javascript:void(0)" class="sidebar-item active" onclick="showSection('mainSection', this)">
-      <i class="fas fa-star"></i>
-      <span>Month 1 - Issue 1</span>
-    </a>
-    <a href="2.html" class="sidebar-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 2 - Issue 2</span>
-    </a>
-    <a href="3.html" class="sidebar-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 3 - Issue 3</span>
-    </a>
-    <a href="4.html" class="sidebar-item">
-      <i class="fas fa-lock"></i>
-      <span>Month 4 - Issue 4</span>
-    </a>
-  </div>
-
-  <div class="upload-area">
-    <label for="magUpload"><i class="fas fa-cloud-arrow-up"></i> Want to add more?</label>
-    <input type="file" id="magUpload" accept="image/*,application/pdf">
-    <div class="upload-btn" onclick="document.getElementById('magUpload').click()">Choose File</div>
   </div>
 </aside>
 
@@ -361,8 +329,11 @@ footer p { color: var(--secondary); font-weight: 600; }
 <script>
 // --- Section Toggle Logic ---
 function showSection(sectionId, el) {
-  // Update active state in sidebar
+  // Remove active state from all sidebar items and the main page button
   document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+  document.getElementById('mainPageBtn').classList.remove('active');
+
+  // Add active state to the clicked element
   el.classList.add('active');
 
   // Hide all sections
@@ -377,30 +348,6 @@ function showSection(sectionId, el) {
   // Scroll to the top of the viewer
   document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
-// --- File Upload Logic ---
-document.getElementById('magUpload').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    const display = document.querySelector('#mainSection .material-display');
-    
-    reader.onload = function(event) {
-      if (file.type.startsWith('image/')) {
-        const img = document.createElement('img');
-        img.src = event.target.result;
-        display.appendChild(img);
-      } else if (file.type === 'application/pdf') {
-        const iframe = document.createElement('iframe');
-        iframe.src = event.target.result;
-        iframe.style.width = '100%';
-        iframe.style.height = '500px';
-        display.appendChild(iframe);
-      }
-    };
-    reader.readAsDataURL(file);
-  }
-});
 </script>
 
 </body>
