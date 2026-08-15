@@ -8,18 +8,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root {
-  /* New Pleasant and Compatible Color Palette */
-  --primary: #E76F51;      /* Soft Coral for Headers */
-  --secondary: #2A9D8F;    /* Teal for Buttons/Borders */
-  --accent: #E9C46A;       /* Soft Sand/Yellow for Highlights */
-  --dark: #264653;         /* Dark Slate Blue for Sidebar/Text */
-  --light: #F4F1DE;        /* Creamy Off-White for Cards */
+  --primary: #E76F51;
+  --secondary: #2A9D8F;
+  --accent: #E9C46A;
+  --dark: #264653;
+  --light: #F4F1DE;
   --sidebar-bg: #264653;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Fredoka', cursive;
-  /* Soft background gradient */
   background: linear-gradient(135deg, #E9F5F3 0%, #FFF8F0 100%);
   color: var(--dark);
   overflow-x: hidden;
@@ -27,7 +25,7 @@ body {
   min-height: 100vh;
 }
 
-/* --- SIDEBAR (LEFT PANEL) --- */
+/* --- SIDEBAR --- */
 .sidebar {
   width: 280px;
   background: var(--sidebar-bg);
@@ -48,7 +46,6 @@ body {
 .creator-badge i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
 .creator-badge h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.4; color: white; }
 
-/* Main Page Button - Made it Teal to stand out beautifully */
 .main-page-btn {
   display: flex;
   align-items: center;
@@ -124,7 +121,6 @@ header h1 {
   margin-bottom: 10px;
   line-height: 1.2;
 }
-header p { font-size: 1.4rem; font-weight: 600; color: var(--light); }
 header .badge {
   position: absolute;
   top: 20px;
@@ -156,24 +152,18 @@ main {
   text-align: center;
 }
 .material-viewer h3 { color: var(--primary); margin-bottom: 15px; font-family: 'Bungee', cursive; }
-.material-images {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-}
-.material-viewer img {
-  max-width: 100%;
-  border-radius: 12px;
-  border: 4px solid var(--light);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
 .material-display {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   margin-top: 15px;
+}
+.material-viewer img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 4px solid var(--light);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .section-card {
@@ -183,6 +173,7 @@ main {
   box-shadow: 0 10px 30px rgba(38, 70, 83, 0.1);
   border: 4px solid var(--dark);
   transition: transform 0.3s;
+  text-align: center;
 }
 .section-card:hover { transform: translateY(-5px); }
 .section-title {
@@ -193,8 +184,124 @@ main {
   display: flex;
   align-items: center;
   gap: 15px;
+  justify-content: center;
 }
 .section-title i { color: var(--secondary); }
+
+/* Forms & Contact Specifics */
+.forms-grid, .contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+.form-card, .contact-card {
+  background: var(--light);
+  border: 2px solid var(--secondary);
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-decoration: none;
+  color: var(--dark);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.form-card:hover, .contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: white;
+}
+.form-card i, .contact-card i { font-size: 3.5rem; margin-bottom: 15px; }
+.form-card.form-type i { color: #7e57c2; }
+.form-card.sheet-type i { color: #0F9D58; }
+.contact-card.whatsapp i { color: #25D366; }
+.contact-card.email i { color: #EA4335; }
+.form-card h3, .contact-card h3 { font-family: 'Bungee', cursive; font-size: 1.2rem; margin-bottom: 10px; color: var(--dark); }
+.form-card p, .contact-card p { font-size: 0.9rem; color: var(--dark); margin-bottom: 20px; opacity: 0.8; }
+.form-link {
+  background: var(--secondary);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Craft Upload */
+.upload-area {
+  margin-top: 30px;
+  background: rgba(78, 205, 196, 0.1);
+  border: 2px dashed var(--secondary);
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+}
+.upload-btn {
+  background: var(--secondary);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  display: inline-block;
+  font-size: 1rem;
+  font-family: 'Fredoka', cursive;
+  border: none;
+}
+.upload-btn:hover { background: #21867A; }
+#craftPreview {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+#craftPreview img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 4px solid var(--secondary);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Awareness & Youtube */
+.awareness-img {
+  max-width: 100%;
+  border-radius: 12px;
+  border: 4px solid var(--dark);
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.text-content {
+  font-size: 1.2rem;
+  color: var(--dark);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 4px solid var(--secondary);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 footer {
   text-align: center;
@@ -233,7 +340,6 @@ footer p { color: var(--secondary); font-weight: 600; }
     <h3>معلم مبدع فرع دمياط<br>Creative teachers<br>Damietta branch</h3>
   </div>
 
-  <!-- Main Page Button -->
   <div class="main-page-btn active" id="mainPageBtn" onclick="showSection('mainSection', this)">
     <i class="fas fa-house"></i> Back to Main Page
   </div>
@@ -241,20 +347,47 @@ footer p { color: var(--secondary); font-weight: 600; }
   <div class="sidebar-section">
     <h4><i class="fas fa-images"></i> Image Galleries</h4>
     <div class="sidebar-item" onclick="showSection('magazinesSection', this)">
-      <i class="fas fa-newspaper"></i>
-      <span>Magazines</span>
+      <i class="fas fa-newspaper"></i><span>Magazines</span>
     </div>
     <div class="sidebar-item" onclick="showSection('idiomsSection', this)">
-      <i class="fas fa-comment-dots"></i>
-      <span>Idioms</span>
+      <i class="fas fa-comment-dots"></i><span>Idioms</span>
     </div>
     <div class="sidebar-item" onclick="showSection('gamesSection', this)">
-      <i class="fas fa-gamepad"></i>
-      <span>Games Time</span>
+      <i class="fas fa-gamepad"></i><span>Games Time</span>
     </div>
     <div class="sidebar-item" onclick="showSection('postersSection', this)">
-      <i class="fas fa-image"></i>
-      <span>Posters</span>
+      <i class="fas fa-image"></i><span>Posters</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('spotDiffSection', this)">
+      <i class="fas fa-search"></i><span>Spot the Differences</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('craftSection', this)">
+      <i class="fas fa-paint-roller"></i><span>اصنع بخامات البيئة</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('puzzleSection', this)">
+      <i class="fas fa-puzzle-piece"></i><span>Puzzle Time</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('readingSection', this)">
+      <i class="fas fa-book-open"></i><span>Reading is Fun</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('mandalaSection', this)">
+      <i class="fas fa-palette"></i><span>Color Mandala</span>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <h4><i class="fas fa-child"></i> Activities & Awareness</h4>
+    <div class="sidebar-item" onclick="showSection('parentsSection', this)">
+      <i class="fas fa-user-shield"></i><span>ركن ولي الأمر والطالب</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('songsSection', this)">
+      <i class="fas fa-music"></i><span>احفظ معنا أغاني جديدة</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('formsSection', this)">
+      <i class="fas fa-file-alt"></i><span>Forms & Submissions</span>
+    </div>
+    <div class="sidebar-item" onclick="showSection('contactSection', this)">
+      <i class="fas fa-address-book"></i><span>Contact Us</span>
     </div>
   </div>
 </aside>
@@ -268,30 +401,31 @@ footer p { color: var(--secondary); font-weight: 600; }
   </header>
 
   <main>
-    <!-- MAIN MONTH 1 SECTION -->
+    <!-- MAIN SECTION -->
     <section class="section-card material-viewer" id="mainSection">
-      <div class="section-title" style="justify-content: center;"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
+      <div class="section-title"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
       <div class="material-display">
         <img src="main/1.jpeg" alt="Main Page Image 1">
         <img src="main/2.jpeg" alt="Main Page Image 2">
       </div>
     </section>
 
-    <!-- MAGAZINES SECTION (6 Images) -->
+    <!-- MAGAZINES SECTION (6 images) -->
     <section class="section-card material-viewer" id="magazinesSection" style="display: none;">
-      <div class="section-title" style="justify-content: center;"><i class="fas fa-newspaper"></i> Magazines</div>
+      <div class="section-title"><i class="fas fa-newspaper"></i> Magazines</div>
       <div class="material-display">
         <img src="magazines/1.jpeg" alt="Magazines Image 1">
         <img src="magazines/2.jpeg" alt="Magazines Image 2">
         <img src="magazines/3.jpeg" alt="Magazines Image 3">
         <img src="magazines/4.jpeg" alt="Magazines Image 4">
         <img src="magazines/5.jpeg" alt="Magazines Image 5">
+        <img src="magazines/6.jpeg" alt="Magazines Image 6">
       </div>
     </section>
 
-    <!-- IDIOMS SECTION -->
+    <!-- IDIOMS SECTION (13 images) -->
     <section class="section-card material-viewer" id="idiomsSection" style="display: none;">
-      <div class="section-title" style="justify-content: center;"><i class="fas fa-comment-dots"></i> Idioms</div>
+      <div class="section-title"><i class="fas fa-comment-dots"></i> Idioms</div>
       <div class="material-display">
         <img src="idioms/1.jpeg" alt="Idioms Image 1">
         <img src="idioms/2.jpeg" alt="Idioms Image 2">
@@ -309,9 +443,9 @@ footer p { color: var(--secondary); font-weight: 600; }
       </div>
     </section>
 
-    <!-- GAMES TIME SECTION -->
+    <!-- GAMES TIME SECTION (6 images) -->
     <section class="section-card material-viewer" id="gamesSection" style="display: none;">
-      <div class="section-title" style="justify-content: center;"><i class="fas fa-gamepad"></i> Games Time</div>
+      <div class="section-title"><i class="fas fa-gamepad"></i> Games Time</div>
       <div class="material-display">
         <img src="games/1.jpeg" alt="Games Image 1">
         <img src="games/2.jpeg" alt="Games Image 2">
@@ -322,9 +456,9 @@ footer p { color: var(--secondary); font-weight: 600; }
       </div>
     </section>
 
-    <!-- POSTERS SECTION -->
+    <!-- POSTERS SECTION (10 images) -->
     <section class="section-card material-viewer" id="postersSection" style="display: none;">
-      <div class="section-title" style="justify-content: center;"><i class="fas fa-image"></i> Posters</div>
+      <div class="section-title"><i class="fas fa-image"></i> Posters</div>
       <div class="material-display">
         <img src="posters/1.jpeg" alt="Posters Image 1">
         <img src="posters/2.jpeg" alt="Posters Image 2">
@@ -336,6 +470,205 @@ footer p { color: var(--secondary); font-weight: 600; }
         <img src="posters/8.jpeg" alt="Posters Image 8">
         <img src="posters/9.jpeg" alt="Posters Image 9">
         <img src="posters/10.jpeg" alt="Posters Image 10">
+      </div>
+    </section>
+
+    <!-- SPOT THE DIFFERENCES SECTION (5 images) -->
+    <section class="section-card material-viewer" id="spotDiffSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-search"></i> Spot the Differences</div>
+      <div class="material-display">
+        <img src="spot-the-differences/1.jpeg" alt="Spot the Differences Image 1">
+        <img src="spot-the-differences/2.jpeg" alt="Spot the Differences Image 2">
+        <img src="spot-the-differences/3.jpeg" alt="Spot the Differences Image 3">
+        <img src="spot-the-differences/4.jpeg" alt="Spot the Differences Image 4">
+        <img src="spot-the-differences/5.jpeg" alt="Spot the Differences Image 5">
+      </div>
+    </section>
+
+    <!-- CRAFT SECTION (15 images) -->
+    <section class="section-card material-viewer" id="craftSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-paint-roller"></i> اصنع بخامات البيئة وانشر صورتك</div>
+      <div class="material-display">
+        <img src="craft/1.jpeg" alt="Craft Image 1">
+        <img src="craft/2.jpeg" alt="Craft Image 2">
+        <img src="craft/3.jpeg" alt="Craft Image 3">
+        <img src="craft/4.jpeg" alt="Craft Image 4">
+        <img src="craft/5.jpeg" alt="Craft Image 5">
+        <img src="craft/6.jpeg" alt="Craft Image 6">
+        <img src="craft/7.jpeg" alt="Craft Image 7">
+        <img src="craft/8.jpeg" alt="Craft Image 8">
+        <img src="craft/9.jpeg" alt="Craft Image 9">
+        <img src="craft/10.jpeg" alt="Craft Image 10">
+        <img src="craft/11.jpeg" alt="Craft Image 11">
+        <img src="craft/12.jpeg" alt="Craft Image 12">
+        <img src="craft/13.jpeg" alt="Craft Image 13">
+        <img src="craft/14.jpeg" alt="Craft Image 14">
+        <img src="craft/15.jpeg" alt="Craft Image 15">
+      </div>
+      
+      <div class="upload-area">
+        <h3 style="color: var(--dark); margin-bottom: 15px;">قم برفع صورتك هنا</h3>
+        <p style="margin-bottom: 20px; color: var(--dark);">شاركنا إبداعك! ارفع صورة صنعك من خامات البيئة لتنشر هنا.</p>
+        <input type="file" id="craftUpload" accept="image/*" style="display:none" onchange="previewCraft(event)">
+        <button class="upload-btn" onclick="document.getElementById('craftUpload').click()">
+          <i class="fas fa-cloud-arrow-up"></i> رفع صورة
+        </button>
+        <div id="craftPreview"></div>
+      </div>
+    </section>
+
+    <!-- PUZZLE TIME SECTION (13 images) -->
+    <section class="section-card material-viewer" id="puzzleSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-puzzle-piece"></i> Puzzle Time</div>
+      <div class="material-display">
+        <img src="puzzle-time/1.jpeg" alt="Puzzle Time Image 1">
+        <img src="puzzle-time/2.jpeg" alt="Puzzle Time Image 2">
+        <img src="puzzle-time/3.jpeg" alt="Puzzle Time Image 3">
+        <img src="puzzle-time/4.jpeg" alt="Puzzle Time Image 4">
+        <img src="puzzle-time/5.jpeg" alt="Puzzle Time Image 5">
+        <img src="puzzle-time/6.jpeg" alt="Puzzle Time Image 6">
+        <img src="puzzle-time/7.jpeg" alt="Puzzle Time Image 7">
+        <img src="puzzle-time/8.jpeg" alt="Puzzle Time Image 8">
+        <img src="puzzle-time/9.jpeg" alt="Puzzle Time Image 9">
+        <img src="puzzle-time/10.jpeg" alt="Puzzle Time Image 10">
+        <img src="puzzle-time/11.jpeg" alt="Puzzle Time Image 11">
+        <img src="puzzle-time/12.jpeg" alt="Puzzle Time Image 12">
+        <img src="puzzle-time/13.jpeg" alt="Puzzle Time Image 13">
+      </div>
+    </section>
+
+    <!-- READING IS FUN SECTION (36 images) -->
+    <section class="section-card material-viewer" id="readingSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-book-open"></i> Reading is Fun</div>
+      <div class="material-display">
+        <img src="reading-is-fun/1.jpeg" alt="Reading Image 1">
+        <img src="reading-is-fun/2.jpeg" alt="Reading Image 2">
+        <img src="reading-is-fun/3.jpeg" alt="Reading Image 3">
+        <img src="reading-is-fun/4.jpeg" alt="Reading Image 4">
+        <img src="reading-is-fun/5.jpeg" alt="Reading Image 5">
+        <img src="reading-is-fun/6.jpeg" alt="Reading Image 6">
+        <img src="reading-is-fun/7.jpeg" alt="Reading Image 7">
+        <img src="reading-is-fun/8.jpeg" alt="Reading Image 8">
+        <img src="reading-is-fun/9.jpeg" alt="Reading Image 9">
+        <img src="reading-is-fun/10.jpeg" alt="Reading Image 10">
+        <img src="reading-is-fun/11.jpeg" alt="Reading Image 11">
+        <img src="reading-is-fun/12.jpeg" alt="Reading Image 12">
+        <img src="reading-is-fun/13.jpeg" alt="Reading Image 13">
+        <img src="reading-is-fun/14.jpeg" alt="Reading Image 14">
+        <img src="reading-is-fun/15.jpeg" alt="Reading Image 15">
+        <img src="reading-is-fun/16.jpeg" alt="Reading Image 16">
+        <img src="reading-is-fun/17.jpeg" alt="Reading Image 17">
+        <img src="reading-is-fun/18.jpeg" alt="Reading Image 18">
+        <img src="reading-is-fun/19.jpeg" alt="Reading Image 19">
+        <img src="reading-is-fun/20.jpeg" alt="Reading Image 20">
+        <img src="reading-is-fun/21.jpeg" alt="Reading Image 21">
+        <img src="reading-is-fun/22.jpeg" alt="Reading Image 22">
+        <img src="reading-is-fun/23.jpeg" alt="Reading Image 23">
+        <img src="reading-is-fun/24.jpeg" alt="Reading Image 24">
+        <img src="reading-is-fun/25.jpeg" alt="Reading Image 25">
+        <img src="reading-is-fun/26.jpeg" alt="Reading Image 26">
+        <img src="reading-is-fun/27.jpeg" alt="Reading Image 27">
+        <img src="reading-is-fun/28.jpeg" alt="Reading Image 28">
+        <img src="reading-is-fun/29.jpeg" alt="Reading Image 29">
+        <img src="reading-is-fun/30.jpeg" alt="Reading Image 30">
+        <img src="reading-is-fun/31.jpeg" alt="Reading Image 31">
+        <img src="reading-is-fun/32.jpeg" alt="Reading Image 32">
+        <img src="reading-is-fun/33.jpeg" alt="Reading Image 33">
+        <img src="reading-is-fun/34.jpeg" alt="Reading Image 34">
+        <img src="reading-is-fun/35.jpeg" alt="Reading Image 35">
+        <img src="reading-is-fun/36.jpeg" alt="Reading Image 36">
+      </div>
+    </section>
+
+    <!-- COLOR MANDALA SECTION (8 images) -->
+    <section class="section-card material-viewer" id="mandalaSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-palette"></i> Color Mandala</div>
+      <div class="material-display">
+        <img src="color-mandala/1.jpeg" alt="Mandala Image 1">
+        <img src="color-mandala/2.jpeg" alt="Mandala Image 2">
+        <img src="color-mandala/3.jpeg" alt="Mandala Image 3">
+        <img src="color-mandala/4.jpeg" alt="Mandala Image 4">
+        <img src="color-mandala/5.jpeg" alt="Mandala Image 5">
+        <img src="color-mandala/6.jpeg" alt="Mandala Image 6">
+        <img src="color-mandala/7.jpeg" alt="Mandala Image 7">
+        <img src="color-mandala/8.jpeg" alt="Mandala Image 8">
+      </div>
+    </section>
+
+    <!-- PARENTS & STUDENTS CORNER (Video Moved Here) -->
+    <section class="section-card material-viewer" id="parentsSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-user-shield"></i> ركن ولي الأمر والطالب</div>
+      <div class="video-container">
+        <!-- The video H4RicwI_P2k is now placed here as requested -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/H4RicwI_P2k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- NEW SONGS SECTION (Placeholders for 2 new videos) -->
+    <section class="section-card material-viewer" id="songsSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-music"></i> احفظ معنا أغاني جديدة</div>
+      <p class="text-content">استمع إلى أغانيينا التعليمية الجديدة واحفظها معنا!</p>
+      
+      <div class="video-container">
+        <!-- First Video: Replace VIDEO_ID_1 with your new YouTube video ID -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" title="YouTube video player 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      
+      <div class="video-container" style="margin-top: 30px;">
+        <!-- Second Video: Replace VIDEO_ID_2 with your second new YouTube video ID -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_2" title="YouTube video player 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- FORMS & SUBMISSIONS SECTION -->
+    <section class="section-card material-viewer" id="formsSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-clipboard-list"></i> Forms & Submissions</div>
+      <p style="font-size: 1.1rem; margin-bottom: 20px; color: var(--dark);">Click a card below to open the Google Form or view the response spreadsheet.</p>
+      
+      <div class="forms-grid">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEUwRTyHZrIla739SS9Cy6IduKnI79GSZN4Ep_kBG70SW1qw/viewform?usp=header" target="_blank" class="form-card form-type">
+          <i class="fab fa-google-drive"></i>
+          <h3>Google Form 1</h3>
+          <p>Click here to fill out the form.</p>
+          <span class="form-link">Open Form <i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxvG-V6tfboh4oEzonMqirkO1jyRbWHP0_hHccFY3bVV1FMA/viewform?usp=header" target="_blank" class="form-card form-type">
+          <i class="fab fa-google-drive"></i>
+          <h3>Google Form 2</h3>
+          <p>Click here to fill out the form.</p>
+          <span class="form-link">Open Form <i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/1GaW0l3cXo6H67ZbqbTbNCyCv1WhVJhIpQm-bNqsRm1E/edit?usp=sharing" target="_blank" class="form-card sheet-type">
+          <i class="fas fa-table"></i>
+          <h3>Response Sheet 1</h3>
+          <p>View the submitted responses.</p>
+          <span class="form-link">Open Sheet <i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/1LQ1wXaQOJtcKeicuhlIkgbFgwZeED4_iCQ1dopyYxCg/edit?usp=sharing" target="_blank" class="form-card sheet-type">
+          <i class="fas fa-table"></i>
+          <h3>Response Sheet 2</h3>
+          <p>View the submitted responses.</p>
+          <span class="form-link">Open Sheet <i class="fas fa-external-link-alt"></i></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTACT US SECTION -->
+    <section class="section-card material-viewer" id="contactSection" style="display: none;">
+      <div class="section-title"><i class="fas fa-address-book"></i> تواصل معنا (Contact Us)</div>
+      <div class="contact-grid">
+        <a href="https://wa.me/201008771314" target="_blank" class="contact-card whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <h3>WhatsApp</h3>
+          <p>01008771314</p>
+          <span class="form-link" style="background: #25D366;">Chat Now <i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="mailto:felzahra2018@gmail.com" class="contact-card email">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>felzahra2018@gmail.com</p>
+          <span class="form-link" style="background: #EA4335;">Send Email <i class="fas fa-external-link-alt"></i></span>
+        </a>
       </div>
     </section>
   </main>
@@ -357,17 +690,35 @@ function showSection(sectionId, el) {
   el.classList.add('active');
 
   // Hide all sections
-  document.getElementById('mainSection').style.display = 'none';
-  document.getElementById('magazinesSection').style.display = 'none';
-  document.getElementById('idiomsSection').style.display = 'none';
-  document.getElementById('gamesSection').style.display = 'none';
-  document.getElementById('postersSection').style.display = 'none';
+  const sections = document.querySelectorAll('main section');
+  sections.forEach(sec => sec.style.display = 'none');
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';
   
   // Scroll to the top of the viewer
   document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// --- Craft Upload Preview Logic ---
+function previewCraft(event) {
+  const reader = new FileReader();
+  const previewDiv = document.getElementById('craftPreview');
+  
+  reader.onload = function() {
+    const img = document.createElement('img');
+    img.src = reader.result;
+    previewDiv.innerHTML = ''; // Clear previous
+    previewDiv.appendChild(img);
+    
+    const note = document.createElement('p');
+    note.innerText = "شكراً لك! سيتم نشر صورتك بعد المراجعة.";
+    note.style.color = "var(--secondary)";
+    note.style.fontWeight = "600";
+    note.style.marginTop = "10px";
+    previewDiv.appendChild(note);
+  };
+  reader.readAsDataURL(event.target.files[0]);
 }
 </script>
 
