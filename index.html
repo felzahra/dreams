@@ -240,6 +240,10 @@ footer p { color: var(--secondary); font-weight: 600; }
 
   <div class="sidebar-section">
     <h4><i class="fas fa-images"></i> Image Galleries</h4>
+    <div class="sidebar-item" onclick="showSection('magazinesSection', this)">
+      <i class="fas fa-newspaper"></i>
+      <span>Magazines</span>
+    </div>
     <div class="sidebar-item" onclick="showSection('idiomsSection', this)">
       <i class="fas fa-comment-dots"></i>
       <span>Idioms</span>
@@ -270,6 +274,19 @@ footer p { color: var(--secondary); font-weight: 600; }
       <div class="material-display">
         <img src="main/1.jpeg" alt="Main Page Image 1">
         <img src="main/2.jpeg" alt="Main Page Image 2">
+      </div>
+    </section>
+
+    <!-- MAGAZINES SECTION (6 Images) -->
+    <section class="section-card material-viewer" id="magazinesSection" style="display: none;">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-newspaper"></i> Magazines</div>
+      <div class="material-display">
+        <img src="magazines/1.jpeg" alt="Magazines Image 1">
+        <img src="magazines/2.jpeg" alt="Magazines Image 2">
+        <img src="magazines/3.jpeg" alt="Magazines Image 3">
+        <img src="magazines/4.jpeg" alt="Magazines Image 4">
+        <img src="magazines/5.jpeg" alt="Magazines Image 5">
+        <img src="magazines/6.jpeg" alt="Magazines Image 6">
       </div>
     </section>
 
@@ -342,6 +359,7 @@ function showSection(sectionId, el) {
 
   // Hide all sections
   document.getElementById('mainSection').style.display = 'none';
+  document.getElementById('magazinesSection').style.display = 'none';
   document.getElementById('idiomsSection').style.display = 'none';
   document.getElementById('gamesSection').style.display = 'none';
   document.getElementById('postersSection').style.display = 'none';
