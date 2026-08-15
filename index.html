@@ -173,7 +173,7 @@ main {
   border: 4px solid var(--light);
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
-#materialDisplay {
+.material-display {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -242,15 +242,15 @@ footer p { color: var(--secondary); font-weight: 600; }
 
   <div class="sidebar-section">
     <h4><i class="fas fa-images"></i> Image Galleries</h4>
-    <div class="sidebar-item" onclick="loadGallery('Idioms', 13, 'idioms/', this)">
+    <div class="sidebar-item" onclick="showSection('idiomsSection', this)">
       <i class="fas fa-comment-dots"></i>
       <span>Idioms (13 images)</span>
     </div>
-    <div class="sidebar-item" onclick="loadGallery('Games Time', 6, 'games/', this)">
+    <div class="sidebar-item" onclick="showSection('gamesSection', this)">
       <i class="fas fa-gamepad"></i>
       <span>Games Time (6 images)</span>
     </div>
-    <div class="sidebar-item" onclick="loadGallery('Posters', 10, 'posters/', this)">
+    <div class="sidebar-item" onclick="showSection('postersSection', this)">
       <i class="fas fa-image"></i>
       <span>Posters (10 images)</span>
     </div>
@@ -258,7 +258,7 @@ footer p { color: var(--secondary); font-weight: 600; }
 
   <div class="sidebar-section">
     <h4><i class="fas fa-calendar-days"></i> 2026 Magazines</h4>
-    <a href="javascript:void(0)" class="sidebar-item active" onclick="loadMonth1(this)">
+    <a href="javascript:void(0)" class="sidebar-item active" onclick="showSection('mainSection', this)">
       <i class="fas fa-star"></i>
       <span>Month 1 - Issue 1</span>
     </a>
@@ -292,13 +292,62 @@ footer p { color: var(--secondary); font-weight: 600; }
   </header>
 
   <main>
-    <!-- This Month's Magazine (Hardcoded Default Images) -->
-    <section class="section-card material-viewer">
-      <div class="section-title" style="justify-content: center;" id="viewerTitle"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
-      <div id="materialDisplay" class="material-images">
-        <!-- Hardcoded images to ensure they load immediately -->
+    <!-- MAIN MONTH 1 SECTION -->
+    <section class="section-card material-viewer" id="mainSection">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-book-open-reader"></i> This Month's Magazine</div>
+      <div class="material-display">
         <img src="main/1.jpeg" alt="Main Page Image 1">
         <img src="main/2.jpeg" alt="Main Page Image 2">
+      </div>
+    </section>
+
+    <!-- IDIOMS SECTION (13 Images) -->
+    <section class="section-card material-viewer" id="idiomsSection" style="display: none;">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-comment-dots"></i> Idioms</div>
+      <div class="material-display">
+        <img src="idioms/1.jpeg" alt="Idioms Image 1">
+        <img src="idioms/2.jpeg" alt="Idioms Image 2">
+        <img src="idioms/3.jpeg" alt="Idioms Image 3">
+        <img src="idioms/4.jpeg" alt="Idioms Image 4">
+        <img src="idioms/5.jpeg" alt="Idioms Image 5">
+        <img src="idioms/6.jpeg" alt="Idioms Image 6">
+        <img src="idioms/7.jpeg" alt="Idioms Image 7">
+        <img src="idioms/8.jpeg" alt="Idioms Image 8">
+        <img src="idioms/9.jpeg" alt="Idioms Image 9">
+        <img src="idioms/10.jpeg" alt="Idioms Image 10">
+        <img src="idioms/11.jpeg" alt="Idioms Image 11">
+        <img src="idioms/12.jpeg" alt="Idioms Image 12">
+        <img src="idioms/13.jpeg" alt="Idioms Image 13">
+      </div>
+    </section>
+
+    <!-- GAMES TIME SECTION (6 Images) -->
+    <section class="section-card material-viewer" id="gamesSection" style="display: none;">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-gamepad"></i> Games Time</div>
+      <div class="material-display">
+        <img src="games/1.jpeg" alt="Games Image 1">
+        <img src="games/2.jpeg" alt="Games Image 2">
+        <img src="games/3.jpeg" alt="Games Image 3">
+        <img src="games/4.jpeg" alt="Games Image 4">
+        <img src="games/5.jpeg" alt="Games Image 5">
+        <img src="games/6.jpeg" alt="Games Image 6">
+      </div>
+    </section>
+
+    <!-- POSTERS SECTION (10 Images) -->
+    <section class="section-card material-viewer" id="postersSection" style="display: none;">
+      <div class="section-title" style="justify-content: center;"><i class="fas fa-image"></i> Posters</div>
+      <div class="material-display">
+        <img src="posters/1.jpeg" alt="Posters Image 1">
+        <img src="posters/2.jpeg" alt="Posters Image 2">
+        <img src="posters/3.jpeg" alt="Posters Image 3">
+        <img src="posters/4.jpeg" alt="Posters Image 4">
+        <img src="posters/5.jpeg" alt="Posters Image 5">
+        <img src="posters/6.jpeg" alt="Posters Image 6">
+        <img src="posters/7.jpeg" alt="Posters Image 7">
+        <img src="posters/8.jpeg" alt="Posters Image 8">
+        <img src="posters/9.jpeg" alt="Posters Image 9">
+        <img src="posters/10.jpeg" alt="Posters Image 10">
       </div>
     </section>
   </main>
@@ -310,47 +359,23 @@ footer p { color: var(--secondary); font-weight: 600; }
 </div>
 
 <script>
-// --- Dynamic Gallery Loader ---
-function loadGallery(title, count, basePath, el) {
+// --- Section Toggle Logic ---
+function showSection(sectionId, el) {
   // Update active state in sidebar
   document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
   el.classList.add('active');
 
-  const display = document.getElementById('materialDisplay');
-  const viewerTitle = document.getElementById('viewerTitle');
-  
-  viewerTitle.innerHTML = `<i class="fas fa-images"></i> ${title}`;
-  display.innerHTML = ''; // Clear previous images
-  
-  for(let i = 1; i <= count; i++) {
-    const img = document.createElement('img');
-    img.src = `${basePath}${i}.jpeg`;
-    img.alt = `${title} Image ${i}`;
-    
-    // Hide image if it fails to load to prevent broken image icons
-    img.onerror = function() {
-      this.style.display = 'none';
-    };
-    
-    display.appendChild(img);
-  }
+  // Hide all sections
+  document.getElementById('mainSection').style.display = 'none';
+  document.getElementById('idiomsSection').style.display = 'none';
+  document.getElementById('gamesSection').style.display = 'none';
+  document.getElementById('postersSection').style.display = 'none';
+
+  // Show the selected section
+  document.getElementById(sectionId).style.display = 'block';
   
   // Scroll to the top of the viewer
-  document.querySelector('.material-viewer').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function loadMonth1(el) {
-  document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
-  el.classList.add('active');
-  
-  const display = document.getElementById('materialDisplay');
-  const viewerTitle = document.getElementById('viewerTitle');
-  
-  viewerTitle.innerHTML = `<i class="fas fa-book-open-reader"></i> This Month's Magazine`;
-  display.innerHTML = `
-    <img src="main/1.jpeg" alt="Main Page Image 1">
-    <img src="main/2.jpeg" alt="Main Page Image 2">
-  `;
+  document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // --- File Upload Logic ---
@@ -358,7 +383,7 @@ document.getElementById('magUpload').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();
-    const display = document.getElementById('materialDisplay');
+    const display = document.querySelector('#mainSection .material-display');
     
     reader.onload = function(event) {
       if (file.type.startsWith('image/')) {
